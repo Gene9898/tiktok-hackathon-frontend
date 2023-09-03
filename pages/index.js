@@ -29,11 +29,11 @@ export default function Home() {
       },
     };
 
-    // const res = getReq({
-    //   route: "http://localhost:8080/test",
-    //   headers: requestInfo,
-    // });
-    // console.log(res);
+    const res = getReq({
+      route: "http://localhost:8080/test",
+      headers: requestInfo,
+    });
+    console.log(res);
 
     // const response = await fetch("http://localhost:8080/test", requestInfo);
     // const responseBody = await response.json();

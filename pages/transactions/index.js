@@ -1,5 +1,5 @@
 import { currencyFormatter } from "../../lib/utils";
-import Transaction from "components/transactionObj";
+import Transaction from "components/Transactions/transactionObj";
 
 const DummyData = [
   {
