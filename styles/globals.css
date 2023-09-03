@@ -4,8 +4,9 @@
 
 @layer base {
   body {
-    @apply bg-white;
-    @apply dark:bg-neutral-700;
+    @apply bg-slate-900 text-white;
+    /*@apply bg-white;
+    @apply dark:bg-neutral-700;*/
   }
   h1 {
     @apply text-4xl;
@@ -30,5 +31,24 @@
   h6 {
     @apply text-sm;
     @apply font-semibold;
+  }
+
+  :link{
+    @apply px-4 py-2 text-white capitalize hover:bg-yellow-500 hover:border-yellow-600 hover:scale-110 rounded-xl;
+  }
+}
+
+
+@layer utilities{
+  .btn{
+    @apply px-4 py-2 text-sm capitalize rounded-xl transition-all duration-100 hover:scale-110;
+  }
+
+  .btn-primary{
+    @apply bg-slate-700 border-slate-700 text-lime-400;
+  }
+
+  .btn-primary-outline{
+    @apply text-lime-400;
   }
 }

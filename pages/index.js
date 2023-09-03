@@ -41,9 +41,11 @@ export default function Home() {
   }
 
   return (
-  <div>
+    <header>
+      <div>
     <h1>Hi</h1>
     <button onClick={signIn} className="">Sign in</button>
   </div>
+    </header>
   )
 }
