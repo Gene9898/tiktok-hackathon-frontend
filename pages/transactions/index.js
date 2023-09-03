@@ -37,7 +37,7 @@ export default function Transactions() {
       </section>
 
       <section className="flex items-center gap-2 py-3">
-        <button className="btn btn-primary-outline">+ Ingoing</button>
+        <button className="btn btn-primary-outline">+ Incoming</button>
         <button className="btn btn-primary">+ Outgoing</button>
       </section>
 
