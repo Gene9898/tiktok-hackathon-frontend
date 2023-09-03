@@ -39,7 +39,7 @@
 }
 
 
-@layer utilities{
+@layer components{
   .btn{
     @apply px-4 py-2 text-sm capitalize rounded-xl transition-all duration-100 hover:scale-110;
   }

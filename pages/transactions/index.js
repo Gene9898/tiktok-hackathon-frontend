@@ -1,4 +1,4 @@
-import { currencyFormatter } from "lib/utils";
+import { currencyFormatter } from "../../lib/utils";
 import Transaction from "components/transactionObj";
 
 const DummyData = [
@@ -46,7 +46,7 @@ export default function Transactions() {
         <div className="flex flex-col gap-4 mt-6">
           <h4 className="text-gray-400 py-2">Thu, 31 Aug 2023</h4>
 
-          {DummyData.map((transaction,index) => {
+          {DummyData.map((transaction, index) => {
             return (
               <Transaction
                 key={"transaction-" + index}
