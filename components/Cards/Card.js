@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getReq } from "@/lib/utils";
+import { getReq, getCardType } from "@/lib/utils";
 import { setSavedCards, selectSavedCards } from "@/store/slices/cardSlice";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,19 +15,29 @@ const Card = () => {
     dispatch(setSavedCards(res));
   };
 
+//   const verify = async () => {
+//     const res = await getReq({
+//       route:
+//         "https://api.bincodes.com/bin/json/9fc53b3db09ca830488d19546a4fc2a1/515735/",
+//       headers: {},
+//     });
+//     console.log(res);
+//   };
+
   useEffect(() => {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-wrap gap-2">
       {saved_cards.map((card, index) => (
-        <div key={"card" + index}>
+        <div key={"card" + index} className="rounded-md border-2 bg-slate-800">
           <h1>{card.cardNumber}</h1>
           <h1>{card.cvc}</h1>
           <h1>{card.expiryDate}</h1>
           <h1>{card.userId}</h1>
+          <h1>{getCardType(card.cardNumber)}</h1>
         </div>
       ))}
     </div>
