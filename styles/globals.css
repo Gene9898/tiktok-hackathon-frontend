@@ -51,4 +51,8 @@
   .btn-primary-outline{
     @apply text-lime-400;
   }
+
+  .report{
+    @apply text-white capitalize hover:text-red-600;
+  }
 }
