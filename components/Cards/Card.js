@@ -15,14 +15,14 @@ const Card = () => {
     dispatch(setSavedCards(res));
   };
 
-//   const verify = async () => {
-//     const res = await getReq({
-//       route:
-//         "https://api.bincodes.com/bin/json/9fc53b3db09ca830488d19546a4fc2a1/515735/",
-//       headers: {},
-//     });
-//     console.log(res);
-//   };
+  // const verify = async () => {
+  //   const res = await getReq({
+  //     route:
+  //       "https://api.bincodes.com/bin/json/bd74bf4410ffdceef5db92f44c9ce728/526471/",
+  //     headers: {},
+  //   });
+  //   console.log(res);
+  // };
 
   useEffect(() => {
     fetchData();
