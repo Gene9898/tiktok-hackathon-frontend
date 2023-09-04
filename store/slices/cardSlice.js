@@ -14,7 +14,11 @@ export const cardSlice = createSlice({
       console.log(action.payload);
       state.saved_cards = action.payload;
     },
-    setCardRegistrationDetails(state, action) {},
+    setCardRegistrationDetails(state, action) {
+      const id = action.payload.id;
+      const val = action.payload.val;
+      state.card_register_details[id] = val;
+    },
     extraReducers: {
       [HYDRATE]: (state, action) => {
         return {
