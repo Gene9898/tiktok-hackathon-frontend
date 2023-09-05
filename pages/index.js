@@ -52,33 +52,33 @@ export default function Home() {
   return (
     <header>
       <div className="text-center mb-12 mt-15 py-3">
-        <h1 className="text-4xl font-bold">Manage Your Finances with Ease</h1>
-        <p className="mt-4 text-lg">Simplify your financial life with our finance website.</p>
+        <h1>Manage Your Finances with Ease</h1>
+        <p>Simplify your financial life with our finance website.</p>
       </div>
 
       <section className="max-w-3xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">Track Your Expenses</h2>
-            <p className="text-lg">
+            <h2>Track Your Expenses</h2>
+            <p>
               Monitor your spending habits and keep an close eye on your financial transactions.
             </p>
           </div>
           <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">Safety Ensured</h2>
-            <p className="text-lg">
+            <h2>Safety Ensured</h2>
+            <p>
               Our website can detect and prevent fradulant transactions.
             </p>
           </div>
           <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">Convenience</h2>
-            <p className="text-lg">
+            <h2>Convenience</h2>
+            <p>
               Monitor your finances at a click of a button.
             </p>
           </div>
           <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">Secure & Private</h2>
-            <p className="text-lg">
+            <h2>Secure & Private</h2>
+            <p>
               Your financial data is encrypted and kept confidential, ensuring your peace of mind.
             </p>
           </div>
@@ -86,8 +86,8 @@ export default function Home() {
       </section>
 
       <footer className="text-center mt-16">
-        <p className="text-lg">Get started today and take control of your financial future.</p>
-        <button onClick={signIn} className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg text-lg font-semibold transition duration-300 ease-in-out">
+        <p>Get started today and take control of your financial future.</p>
+        <button onClick={signIn} className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg sm:text-lg font-semibold transition duration-300 ease-in-out">
           Sign in with Google
         </button>
       </footer>

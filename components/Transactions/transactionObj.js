@@ -20,7 +20,7 @@ function Transaction({ color, title, amount }) {
     React.createElement("div", { className: "flex items-center justify-between px-4 py-4 bg-slate-800 rounded-3xl" },
       React.createElement("div", { className: "flex items-center gap-2" },
         React.createElement("div", {
-          className: "w-[25px] h-[25px] rounded-full",
+          className: "w-[8px] h-[8px] sm:w-[25px] sm:h-[25px] rounded-full",
           style: { backgroundColor: color }
         }),
         React.createElement("h4", { className: "capitalize" }, title)
