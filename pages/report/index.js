@@ -24,7 +24,7 @@ export default function Report() {
     <div>
       <main className="bg-slate-900 p-4 min-h-screen">
         <div className="max-w-3xl mx-auto bg-white text-black p-6 rounded-lg shadow-md">
-          <h1 className="text-3xl font-semibold mb-4">Transaction Report</h1>
+          <h1 className="text-3xl font-semibold mb-4">Report Transaction</h1>
 
           {isReported ? (
             <div className="text-green-600 text-xl mb-4">
@@ -42,7 +42,7 @@ export default function Report() {
 
               {!isConfirmed ? (
                 <div className="mt-8">
-                  <h2 className="text-xl font-semibold">Report Transaction</h2>
+                  <h2 className="text-xl font-semibold">Report</h2>
                   <p className="mt-4 text-lg">
                     Do you want to report this transaction?
                   </p>
@@ -60,7 +60,7 @@ export default function Report() {
                 </div>
               ) : (
                 <div className="mt-8">
-                  <h2 className="text-xl font-semibold">Report Transaction</h2>
+                  <h2 className="text-xl font-semibold">Report Details</h2>
                   <p className="mt-4 text-lg">
                     Please provide additional information for your report (if any).
                   </p>
