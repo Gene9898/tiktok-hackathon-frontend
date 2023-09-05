@@ -58,25 +58,25 @@ export default function Home() {
 
       <section className="max-w-3xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
+          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
             <h2>Track Your Expenses</h2>
             <p>
               Monitor your spending habits and keep an close eye on your financial transactions.
             </p>
           </div>
-          <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
+          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
             <h2>Safety Ensured</h2>
             <p>
               Our website can detect and prevent fradulant transactions.
             </p>
           </div>
-          <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
+          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
             <h2>Convenience</h2>
             <p>
               Monitor your finances at a click of a button.
             </p>
           </div>
-          <div className="p-6 rounded-lg bg-blue-800 shadow-lg">
+          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
             <h2>Secure & Private</h2>
             <p>
               Your financial data is encrypted and kept confidential, ensuring your peace of mind.
@@ -87,7 +87,7 @@ export default function Home() {
 
       <footer className="text-center mt-16">
         <p>Get started today and take control of your financial future.</p>
-        <button onClick={signIn} className="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg sm:text-lg font-semibold transition duration-300 ease-in-out">
+        <button onClick={signIn} className="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg sm:text-lg font-semibold transition duration-300 ease-in-out">
           Sign in with Google
         </button>
       </footer>
