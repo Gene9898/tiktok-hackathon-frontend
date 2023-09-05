@@ -13,7 +13,7 @@
     @apply font-bold;
   }
   h2 {
-    @apply text-3xl;
+    @apply text-2xl;
     @apply font-bold;
   }
   h3 {
@@ -31,6 +31,10 @@
   h6 {
     @apply text-sm;
     @apply font-semibold;
+  }
+
+  p {
+    @apply text-lg;
   }
 
   :link{
@@ -54,5 +58,113 @@
 
   .report{
     @apply text-white capitalize hover:text-red-600;
+  }
+
+  .flexbox{
+    @apply container max-w-2xl px-4 py-4 mx-auto pb-8 text-lg;
+  }
+}
+
+
+
+
+/* Mobile Responsive Classes */
+@media (max-width: 1024px) {
+  h1 {
+    @apply text-2xl;
+  }
+  h2{
+    @apply text-xl;
+  }
+  h3 {
+    @apply text-lg;
+  }
+  h4 {
+    @apply text-base;
+  }
+  p {
+    @apply text-base;
+  }
+
+  .flexbox{
+    @apply container max-w-2xl px-4 py-4 mx-auto pb-8 text-base;
+  }
+  
+}
+
+/* Mobile Responsive Classes */
+@media (max-width: 540px) {
+  h1 {
+    @apply text-xl;
+  }
+  h2 {
+    @apply text-lg;
+  }
+  p {
+    @apply text-sm;
+  }
+
+  .btn {
+    @apply px-1 py-2 text-xs; 
+  }
+
+  .flexbox{
+    @apply container max-w-2xl px-2 py-4 mx-auto pb-8 text-sm;
+  }
+
+  :link{
+    @apply px-2 py-1 text-white capitalize hover:bg-yellow-500 hover:border-yellow-600 hover:scale-110 rounded-xl;
+  }
+
+  .report{
+    @apply text-white capitalize hover:text-red-600 text-sm;
+  }
+}
+
+@media (max-width: 440px) {
+  h1 {
+    @apply text-base;
+  }
+
+  h2 {
+    @apply text-base;
+  }
+
+  h3{
+    @apply text-base;
+  }
+
+  h4{
+    @apply text-sm;
+  }
+  
+  .flexbox{
+    @apply container max-w-2xl px-0 py-4 mx-auto pb-8 text-xs;
+  }
+}
+
+@media (max-width: 350px) {
+  h1 {
+    @apply text-sm;
+  }
+
+  h2 {
+    @apply text-sm;
+  }
+
+  h3{
+    @apply text-sm;
+  }
+
+  h4{
+    @apply text-xs;
+  }
+
+  p{
+    @apply text-xs;
+  }
+
+  .report{
+    @apply text-white capitalize hover:text-red-600 text-xs;
   }
 }
