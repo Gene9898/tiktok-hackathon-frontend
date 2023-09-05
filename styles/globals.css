@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    @apply h-full;
+  }
   body {
-    @apply bg-slate-900 text-white;
+    @apply bg-slate-900 text-white min-h-full;
     /*@apply bg-white;
     @apply dark:bg-neutral-700;*/
   }
@@ -37,43 +40,39 @@
     @apply text-lg;
   }
 
-  :link{
+  :link {
     @apply px-4 py-2 text-white capitalize hover:bg-yellow-500 hover:border-yellow-600 hover:scale-110 rounded-xl;
   }
 }
 
-
-@layer components{
-  .btn{
+@layer components {
+  .btn {
     @apply px-4 py-2 text-sm capitalize rounded-xl transition-all duration-100 hover:scale-110;
   }
 
-  .btn-primary{
+  .btn-primary {
     @apply bg-slate-700 border-slate-700 text-lime-400;
   }
 
-  .btn-primary-outline{
+  .btn-primary-outline {
     @apply text-lime-400;
   }
 
-  .report{
+  .report {
     @apply text-white capitalize hover:text-red-600;
   }
 
-  .flexbox{
+  .flexbox {
     @apply container max-w-2xl px-4 py-4 mx-auto pb-8 text-lg;
   }
 }
-
-
-
 
 /* Mobile Responsive Classes */
 @media (max-width: 1024px) {
   h1 {
     @apply text-2xl;
   }
-  h2{
+  h2 {
     @apply text-xl;
   }
   h3 {
@@ -86,10 +85,9 @@
     @apply text-base;
   }
 
-  .flexbox{
+  .flexbox {
     @apply container max-w-2xl px-4 py-4 mx-auto pb-8 text-base;
   }
-  
 }
 
 /* Mobile Responsive Classes */
@@ -105,18 +103,18 @@
   }
 
   .btn {
-    @apply px-1 py-2 text-xs; 
+    @apply px-1 py-2 text-xs;
   }
 
-  .flexbox{
+  .flexbox {
     @apply container max-w-2xl px-2 py-4 mx-auto pb-8 text-sm;
   }
 
-  :link{
+  :link {
     @apply px-2 py-1 text-white capitalize hover:bg-yellow-500 hover:border-yellow-600 hover:scale-110 rounded-xl;
   }
 
-  .report{
+  .report {
     @apply text-white capitalize hover:text-red-600 text-sm;
   }
 }
@@ -130,15 +128,15 @@
     @apply text-base;
   }
 
-  h3{
+  h3 {
     @apply text-base;
   }
 
-  h4{
+  h4 {
     @apply text-sm;
   }
-  
-  .flexbox{
+
+  .flexbox {
     @apply container max-w-2xl px-0 py-4 mx-auto pb-8 text-xs;
   }
 }
@@ -152,19 +150,19 @@
     @apply text-sm;
   }
 
-  h3{
+  h3 {
     @apply text-sm;
   }
 
-  h4{
+  h4 {
     @apply text-xs;
   }
 
-  p{
+  p {
     @apply text-xs;
   }
 
-  .report{
+  .report {
     @apply text-white capitalize hover:text-red-600 text-xs;
   }
 }

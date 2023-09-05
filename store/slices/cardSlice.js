@@ -16,8 +16,10 @@ export const cardSlice = createSlice({
     },
     setCardRegistrationDetails(state, action) {
       const id = action.payload.id;
-      const val = action.payload.val;
+      let val = action.payload.val;
+
       state.card_register_details[id] = val;
+      console.log(state.card_register_details["cardNumber"]);
     },
     extraReducers: {
       [HYDRATE]: (state, action) => {

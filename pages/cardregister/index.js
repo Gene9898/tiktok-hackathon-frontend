@@ -24,12 +24,12 @@ const CardRegister = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 mx-auto container h-screen mb-10">
+    <div className="flex flex-col gap-4 mx-auto container h-full">
       <h1 className="">Add Card</h1>
       <CardDisplay card={card_detail} />
       <CardForm />
       <button
-        className="basis-[8%] w-[40%] bg-slate-400 rounded-md text-3xl hover:bg-blue-400 p-2"
+        className="basis-[8%] w-[40%] bg-slate-400 rounded-md text-3xl hover:bg-blue-400 p-2 mb-10"
         onClick={submitForm}
       >
         Save Card
