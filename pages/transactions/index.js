@@ -30,7 +30,7 @@ const DummyData = [
 
 export default function Transactions() {
   return (
-    <main className="container max-w-2x1 px-4 mx-auto">
+    <main className="container max-w-2xl px-4 mx-auto">
       <section className="py-3">
         <small className="text-gray-400 text-md">My Balance</small>
         <h1>{currencyFormatter(100000)}</h1>
@@ -53,6 +53,7 @@ export default function Transactions() {
                 color={transaction.color}
                 title={transaction.title}
                 amount={transaction.amount}
+                id={transaction.id}
               />
             );
           })}
