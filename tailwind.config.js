@@ -11,10 +11,19 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+      },
       transitionProperty: {
         spacing: "margin,padding",
         wh: "width,height",
         position: "top,bottom,right,left",
+      },
+      animation: {
+        wiggle: "wiggle 200ms ease-in-out",
       },
     },
   },
