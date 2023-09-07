@@ -73,11 +73,6 @@
   .log {
     @apply mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg text-base sm:text-lg font-semibold transition duration-300 ease-in-out mb-8;
   }
-
-
-  .flex-container{
-    @apply flex flex-row items-center justify-center;
-  }
 }
 
 /* Mobile Responsive Classes */
@@ -182,10 +177,3 @@
     @apply text-white capitalize hover:text-red-600 text-xs;
   }
 }
-
-@media (min-width: 1540px) {
-  .flex-container{
-    @apply flex;
-  }
-}
-
