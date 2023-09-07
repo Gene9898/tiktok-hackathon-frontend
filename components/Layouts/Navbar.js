@@ -7,7 +7,7 @@ export default function Navbar() {
         <h1>Finance App</h1>
         <div className="flex items-center sm:gap-2">
           <Link href="/">Home</Link>
-          <Link href="/transactions">Transactions</Link>
+          <Link href="/wallet">Wallet</Link>
           <Link href="/">Logout</Link>
         </div>
       </div>

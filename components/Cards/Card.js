@@ -4,11 +4,11 @@ import { setSavedCards, selectSavedCards } from "@/store/slices/cardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CardDisplay from "./CardDisplay";
 import MinimisedCard from "./MinimisedCard";
+import CardTransaction from "./CardTransaction";
 
 const Card = () => {
   const dispatch = useDispatch();
   const saved_cards = useSelector(selectSavedCards);
-  const [topPos, setTopPos] = useState({});
   const [cardDisplay, setCardDisplay] = useState({});
   const [effect, setEffect] = useState("");
 
@@ -56,12 +56,7 @@ const Card = () => {
           </div>
         ))}
       </div>
-      {Object.keys(cardDisplay).length > 0 && (
-        <CardDisplay
-          card={cardDisplay}
-          divclass={`w-[60%] h-fit ${effect !== false && "animate-wiggle"}`}
-        />
-      )}
+      <CardTransaction card={cardDisplay} effect={effect} />
     </div>
   );
 };
