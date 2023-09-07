@@ -1,5 +1,5 @@
 import { currencyFormatter } from "../../lib/utils";
-import Transaction from "components/Transactions/transactionObj";
+import Transaction from "components/Transactions/TransactionObj";
 
 const DummyData = [
   {
@@ -30,10 +30,10 @@ const DummyData = [
 
 export default function Transactions() {
   return (
-    <main className="container max-w-2xl px-4 mx-auto">
+    <main className="container max-w-3xl px-4 mx-auto">
       <section className="py-3">
         <small className="text-gray-400 text-md">My Balance</small>
-        <h1>{currencyFormatter(100000)}</h1>
+        <h2>{currencyFormatter(100000)}</h2>
       </section>
 
       <section className="flex items-center gap-2 py-3">

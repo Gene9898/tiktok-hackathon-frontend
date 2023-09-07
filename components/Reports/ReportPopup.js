@@ -9,8 +9,8 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="max-w-3xl mx-auto bg-white text-black p-6 rounded-lg shadow-md">
-        <h1 className="sm: text-3xl font-semibold">Report Transaction</h1>
+      <div className="max-w-3xl bg-white text-black p-6 rounded-lg shadow-md sm:mx-0 mx-4">
+        <h1 className="sm:text-3xl text-xl font-semibold">Report Transaction</h1>
 
         {isReported ? (
           <div>
@@ -27,8 +27,8 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
             </div>
           </div> 
         ) : (
-              <div className="mt-6">
-                <h4>Transaction Details</h4>
+              <div className="sm:mt-6 mt-4">
+                <h3 className='sm:text-2xl text-base font-semibold'>Transaction Details</h3>
                 <div className="mt-2 mb-6">
                 <p>Transaction ID: { transactionId }</p>
                 <p>Amount: ${ amount }</p>
@@ -40,18 +40,18 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                 </p>
                 <div className="mt-4">
                   <textarea
-                    className="w-full h-24 px-3 py-2 text-lg border rounded-lg"
+                    className="w-full h-24 px-3 py-2 sm:text-lg text-sm border rounded-lg"
                     placeholder="Enter your report details..."
                   />
-                  <div className="mt-4 space-x-4">
+                  <div className="mt-4 sm:space-x-4 space-x-2">
                   <button
-                    className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg text-lg font-semibold transition duration-300 ease-in-out"
+                    className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={handleReport}
                   >
                     Submit Report
                   </button>
                   <button
-                    className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-lg text-lg font-semibold transition duration-300 ease-in-out"
+                    className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={onClose}
                   >
                     Cancel

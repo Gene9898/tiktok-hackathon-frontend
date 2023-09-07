@@ -1,6 +1,6 @@
 import React from "react";
 import { initFirebase } from "@/config/firebase";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getReq } from "@/lib/utils";
 
@@ -14,6 +14,15 @@ export default function Home() {
   const signIn = async () => {
     const result = await signInWithPopup(auth, provider);
     console.log(result.user);
+  };
+
+  const signOutUser = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
   };
 
   if (loading) {
@@ -39,6 +48,8 @@ export default function Home() {
     // const responseBody = await response.json();
     // console.log(responseBody)
   };
+
+  /*
   if (user) {
     return (
       <div>
@@ -47,50 +58,67 @@ export default function Home() {
         <div onClick={() => callApi()}>Test auth</div>
       </div>
     );
-  }
+  }*/
 
   return (
-    <header>
-      <div className="text-center mb-12 mt-15 py-3">
-        <h1>Manage Your Finances with Ease</h1>
+    <header className="sm:pt-0 pt-4">
+      <div className="text-center mb-6 sm:mb-12 sm:mt-8">
+        <h2>Manage Your Finances with Ease</h2>
         <p>Simplify your financial life with our finance website.</p>
       </div>
 
       <section className="max-w-3xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
-            <h2>Track Your Expenses</h2>
-            <p>
-              Monitor your spending habits and keep an close eye on your financial transactions.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-8 gap-6">
+          <div className="panel">
+            <h3>Safety Ensured</h3>
+              <p>
+               Our website can detect and prevent fradulant transactions.
+              </p>
           </div>
-          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
-            <h2>Safety Ensured</h2>
-            <p>
-              Our website can detect and prevent fradulant transactions.
-            </p>
+          <div className="panel">
+            <h3>Track Your Expenses</h3>
+              <p>
+                Monitor your spending habits and keep an close eye on your financial transactions.
+              </p>
           </div>
-          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
-            <h2>Convenience</h2>
-            <p>
-              Monitor your finances at a click of a button.
-            </p>
+          <div className="panel">
+            <h3>Secure & Private</h3>
+              <p>
+                Your financial data is encrypted and kept confidential, ensuring your peace of mind.
+              </p>
           </div>
-          <div className="p-6 rounded-lg bg-blue-500 shadow-lg mx-2">
-            <h2>Secure & Private</h2>
-            <p>
-              Your financial data is encrypted and kept confidential, ensuring your peace of mind.
-            </p>
+          <div className="panel">
+            <h3>Convenience</h3>
+              <p>
+               Monitor your finances at a click of a button.
+             </p>
           </div>
         </div>
       </section>
 
-      <footer className="text-center mt-16">
-        <p>Get started today and take control of your financial future.</p>
-        <button onClick={signIn} className="mt-4 inline-block bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg sm:text-lg font-semibold transition duration-300 ease-in-out">
-          Sign in with Google
+      
+
+      {user ? (
+      <footer className="text-center mt-6 sm:mt-12">
+        <p>Welcome, {user.displayName}!</p>
+        <button
+          onClick={signOutUser}
+          className="log"
+        >
+          Sign Out
         </button>
       </footer>
+    ) : (
+      <footer className="text-center sm:mt-12">
+        <p>Get started today and take control of your financial future.</p>
+        <button
+          onClick={signIn}
+          className="log"
+        >
+          Sign In with Google
+        </button>
+      </footer>
+    )}
     </header>
   );
 }
