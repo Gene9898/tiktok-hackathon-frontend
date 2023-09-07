@@ -9,7 +9,7 @@ const CardInput = (props) => {
       <label htmlFor={props.id} className={`text-xl ${props.labelclass}`}>
         {props.label}
       </label>
-      {props.type === "tel" && (
+      {props.id === "cardNumber" && (
         <input
           value={props.value}
           id={props.id}
@@ -31,7 +31,7 @@ const CardInput = (props) => {
           }}
         />
       )}
-      {props.type !== "tel" && (
+      {props.id !== "cardNumber" && (
         <input
           value={props.value}
           type={props.type}

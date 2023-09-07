@@ -13,7 +13,7 @@ const Transaction = (props) => {
     low: "bg-green-500",
   };
   return (
-    <div className="flex flex-wrap items-center justify-between px-4 py-4 bg-slate-800 rounded-3xl">
+    <div className="flex flex-wrap items-center justify-between px-4 py-4 bg-slate-800 rounded-3xl w-[90%] ml-auto">
       <div className="flex items-center gap-4 w-fit">
         <div
           className={`w-[8px] h-[8px] sm:w-[25px] sm:h-[25px] rounded-full ${
@@ -24,7 +24,7 @@ const Transaction = (props) => {
       </div>
       <div className="flex ml-auto gap-9">
         <p className="my-auto">{currencyFormatter(props.amount)}</p>
-        <button className="report" onClick={handleReportClick}>
+        <button className="report font-bold" onClick={handleReportClick}>
           Report
         </button>
       </div>

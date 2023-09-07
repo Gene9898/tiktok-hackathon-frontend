@@ -25,36 +25,38 @@ const Card = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-full h-full grid grid-cols-2">
-      <div className="w-full h-full">
-        {saved_cards.map((card, index) => (
-          <div
-            className={`relative h-24 ${
-              effect === index && "animate-wiggle"
-            } cursor-pointer`}
-            key={"card-" + index}
-            onClick={() => {
-              setCardDisplay(card);
-              setEffect(index);
-            }}
-            onAnimationEnd={() => setEffect(false)}
-          >
-            {index === saved_cards.length - 1 && (
-              <CardDisplay
-                card={card}
-                divclass={`absolute border-t-8 border-gray-500 rounded-xl w-[60%] transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
-              />
-            )}
-            {index !== saved_cards.length - 1 && (
-              <MinimisedCard
-                card={card}
-                divclass={`absolute ${
-                  index !== 0 && "border-t-8"
-                } border-gray-500 h-fit w-[60%] transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
-              />
-            )}
-          </div>
-        ))}
+    <div className="w-full h-full flex flex-wrap">
+      <div className="basis-1/2 h-full ">
+        <div className="mx-auto  w-[60%]">
+          {saved_cards.map((card, index) => (
+            <div
+              className={`relative h-24 ${
+                effect === index && "animate-wiggle"
+              } cursor-pointer`}
+              key={"card-" + index}
+              onClick={() => {
+                setCardDisplay(card);
+                setEffect(index);
+              }}
+              onAnimationEnd={() => setEffect(false)}
+            >
+              {index === saved_cards.length - 1 && (
+                <CardDisplay
+                  card={card}
+                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                />
+              )}
+              {index !== saved_cards.length - 1 && (
+                <MinimisedCard
+                  card={card}
+                  divclass={`absolute ${
+                    index !== 0 && "border-t-8"
+                  } border-gray-500 h-fit w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
       <CardTransaction card={cardDisplay} effect={effect} />
     </div>
