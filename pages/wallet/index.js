@@ -3,7 +3,7 @@ import Card from "@/components/Cards/Card";
 
 const index = () => {
   return (
-    <section>
+    <section className="w-full h-full mx-auto p-4">
       <Card />
     </section>
   );

@@ -38,4 +38,4 @@ function Transaction({ color, title, amount, id }) {
   );
 }
 
-module.exports = Transaction;
+module.exports = TransactionObj;
