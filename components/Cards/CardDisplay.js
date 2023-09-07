@@ -17,7 +17,7 @@ const CardDisplay = (props) => {
   }, [dispatch, props.card.cardNumber]);
 
   return (
-    <div className="bg-zinc-400 rounded-md basis-[40%] w-[40%] mr-auto p-4 relative">
+    <div className="bg-zinc-400 rounded-xl w-[45%] p-2">
       <div className="ml-12 h-full">
         {props.card.cardNumber &&
           props.card.cardNumber.replace(/ /g, "").length >= 6 && (

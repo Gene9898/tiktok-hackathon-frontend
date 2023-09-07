@@ -8,7 +8,7 @@ const CardForm = () => {
   const card_details = useSelector(selectCardRegisterDetails);
 
   return (
-    <form className="flex flex-wrap basis-[40%] w-[40%] bg-slate-500 rounded-md p-4 justify-center">
+    <form className="flex flex-wrap w-[45%] bg-red-700 rounded-xl p-4 justify-center font-mono">
       <CardInput
         label="Card Number"
         type="tel"
