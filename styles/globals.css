@@ -59,7 +59,7 @@
   }
 
   .report {
-    @apply text-white capitalize hover:text-red-600;
+    @apply text-white capitalize px-4 py-2 bg-red-600 hover:scale-110 rounded-xl ;
   }
 
   .flexbox {

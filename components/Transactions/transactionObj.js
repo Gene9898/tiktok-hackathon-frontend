@@ -3,7 +3,7 @@ import ReportPopup from 'components/Reports/ReportPopup';
 
 const { currencyFormatter } = require("lib/utils");
 
-function Transaction({ color, title, amount, id }) {
+function TransactionObj({ color, title, amount, id }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleReportClick = () => {
@@ -38,4 +38,4 @@ function Transaction({ color, title, amount, id }) {
   );
 }
 
-module.exports = Transaction;
+module.exports = TransactionObj;
