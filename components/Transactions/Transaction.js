@@ -1,6 +1,6 @@
 import React from "react";
 import { currencyFormatter } from "@/lib/utils";
-
+import Link from "next/link";
 const Transaction = (props) => {
   const types = {
     high: "bg-red-500",
@@ -19,9 +19,12 @@ const Transaction = (props) => {
       </div>
       <div className="flex ml-auto gap-9">
         <p>{currencyFormatter(props.amount)}</p>
-        <button className="text-white capitalize hover:text-red-600">
+        <Link
+          href="/report"
+          className="text-white capitalize bg-red-500"
+        >
           Report
-        </button>
+        </Link>
       </div>
     </div>
   );
