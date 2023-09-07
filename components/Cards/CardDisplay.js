@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FcSimCardChip } from "react-icons/fc";
 import { getCardType } from "@/lib/utils";
 import { setCardRegistrationDetails } from "@/store/slices/cardSlice";
-import { getSchemeIcon, formatCardNumber } from "@/lib/utils";
+import { getSchemeIcon, formatCardNumber, getBankColor } from "@/lib/utils";
 
 const CardDisplay = (props) => {
   const dispatch = useDispatch();
@@ -17,7 +17,11 @@ const CardDisplay = (props) => {
   }, [dispatch, props.card.cardNumber]);
 
   return (
-    <div className="bg-zinc-400 rounded-xl w-[45%] p-2">
+    <div
+      className={` rounded-xl w-[60%] p-2 ${props.divclass} ${getBankColor(
+        props.card.bank
+      )}`}
+    >
       <div className="ml-12 h-full">
         {props.card.cardNumber &&
           props.card.cardNumber.replace(/ /g, "").length >= 6 && (

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { currencyFormatter } from "@/lib/utils";
-import Link from "next/link";
+import ReportPopup from "../Reports/ReportPopup";
 const Transaction = (props) => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleReportClick = () => {
+    setIsPopupOpen(true);
+  };
   const types = {
     high: "bg-red-500",
     med: "bg-yellow-500",
@@ -18,14 +23,19 @@ const Transaction = (props) => {
         <h4 className="capitalize">{props.title}</h4>
       </div>
       <div className="flex ml-auto gap-9">
-        <p>{currencyFormatter(props.amount)}</p>
-        <Link
-          href="/report"
-          className="text-white capitalize bg-red-500"
-        >
+        <p className="my-auto">{currencyFormatter(props.amount)}</p>
+        <button className="report" onClick={handleReportClick}>
           Report
-        </Link>
+        </button>
       </div>
+      {isPopupOpen && (
+        <ReportPopup
+          transactionId={props.id}
+          title={props.title}
+          amount={props.amount}
+          onClose={() => setIsPopupOpen(false)}
+        />
+      )}
     </div>
   );
 };

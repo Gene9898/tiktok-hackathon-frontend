@@ -7,6 +7,7 @@ import {
   getSchemeIcon,
   formatCardNumber,
   formatMinimisedCardNumber,
+  getBankColor,
 } from "@/lib/utils";
 import { BsDot } from "react-icons/bs";
 
@@ -24,7 +25,9 @@ const MinimisedCard = (props) => {
 
   return (
     <div
-      className={`bg-zinc-400 rounded-xl rounded-b-none mr-auto p-4 ${props.divclass}`}
+      className={` rounded-xl w-[60%] p-2 ${props.divclass} ${getBankColor(
+        props.card.bank
+      )}`}
     >
       <div className="ml-12 h-full flex flex-wrap">
         {censorDots.map((index) => (
