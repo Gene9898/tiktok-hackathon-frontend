@@ -16,6 +16,7 @@ const CardForm = () => {
         divclass="basis-full"
         value={formatCardNumber(card_details.cardNumber)}
       />
+      <div>
       <CardInput
         label="Name of Owner"
         type="text"
@@ -30,6 +31,8 @@ const CardForm = () => {
         divclass="basis-1/2"
         value={card_details.dob}
       />
+      </div>
+      <div>
       <CardInput
         label="Expiration Date"
         type="month"
@@ -44,6 +47,8 @@ const CardForm = () => {
         divclass="basis-1/2"
         value={card_details.cvc}
       />
+      </div>
+      
     </form>
   );
 };
