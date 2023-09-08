@@ -39,9 +39,9 @@ const CardForm = () => {
         <CardInput
           label="Date of Birth"
           type="date"
-          id="dob"
+          id="dateOfBirth"
           divclass="sm:w-1/2"
-          value={card_details.dob}
+          value={card_details.dateOfBirth}
           setFunc={setCardRegistrationDetails}
         />
       </div>

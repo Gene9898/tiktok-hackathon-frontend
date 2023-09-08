@@ -15,10 +15,10 @@ const Cards = () => {
   const card_detail = useSelector(selectCardRegisterDetails);
   const saved_cards = useSelector(selectSavedCards);
   const [isReported, setIsReported] = useState(false);
-
+  console.log(saved_cards);
   const fetchData = async () => {
     const res = await getReq({
-      // TODO 
+      // TODO
       route: "http://localhost:3001/api/getcarddetails",
       headers: {},
     });

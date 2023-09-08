@@ -8,6 +8,9 @@ import {
   setAdditionalPaymentDetails,
   selectTransactionCheck,
   selectPaymentDetails,
+  setTransactionCheck,
+  setTransactionDetails,
+  selectTransactionDetails,
 } from "@/store/slices/cardSlice";
 import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
@@ -19,25 +22,28 @@ const CardTransaction = (props) => {
   const [selection, setSelection] = useState("none");
   const transaction_check = useSelector(selectTransactionCheck);
   const payment_details = useSelector(selectPaymentDetails);
+  const transaction_details = useSelector(selectTransactionDetails);
 
   useEffect(() => {
     const fetchData = async () => {
       // TODO needa to get card id from redux stored cards
       const res = await getReq({
-        route: `http://localhost:3001/api/${props.card.cardNumber}`,
+        route: `http://localhost:3001/api/${props.card.cardId}`,
         headers: {},
       });
       console.log(res);
       dispatch(setCardTransactions(res));
     };
     // fetchData();
-  }, [dispatch, props.card.cardNumber]);
+    dispatch(setTransactionDetails());
+  }, [dispatch, props.card.cardId]);
 
   useEffect(() => {
     const postData = async () => {
       const res = await postReq({
         //TODO post with the card in the tx obj
         route: "http://localhost:3001/api/posttxn",
+        // route:"http://localhost:8082/transactions",
         body: payment_details,
         headers: { "Content-Type": "application/json" },
       });
@@ -46,35 +52,9 @@ const CardTransaction = (props) => {
     };
     if (transaction_check === true) {
       postData();
+      dispatch(setTransactionCheck(false));
     }
   }, [transaction_check]);
-
-  const DummyTxns = [
-    {
-      id: 1,
-      title: "Food",
-      risk: "high",
-      amount: 800,
-    },
-    {
-      id: 2,
-      title: "Movies",
-      risk: "med",
-      amount: 100,
-    },
-    {
-      id: 3,
-      title: "Google",
-      risk: "low",
-      amount: 500,
-    },
-    {
-      id: 4,
-      title: "Bus / MRT",
-      risk: "low",
-      amount: 8,
-    },
-  ];
 
   return (
     <div className="w-[50%] h-full">
@@ -119,13 +99,20 @@ const CardTransaction = (props) => {
                 />
                 <h1 className="ml-auto">Transactions</h1>
               </div>
-              {DummyTxns.map((txn, index) => (
-                <Transaction
-                  key={"transaction-" + index}
-                  risk={txn.risk}
-                  title={txn.title}
-                  amount={txn.amount}
-                />
+              {transaction_details.map((txn, index) => (
+                <>
+                  {(index === 0 ||
+                    transaction_details[index - 1]["transactionDateTime"] !==
+                      transaction_details[index]["transactionDateTime"]) && (
+                    <h3 className="ml-16">{txn["transactionDateTime"]}</h3>
+                  )}
+                  <Transaction
+                    key={"transaction-" + index}
+                    risk={txn.risk}
+                    title={txn.name}
+                    amount={txn.amount}
+                  />
+                </>
               ))}
             </section>
           )}
@@ -137,7 +124,9 @@ const CardTransaction = (props) => {
                 onClick={() => {
                   dispatch(
                     setAdditionalPaymentDetails({
-                      cardNumber: props.card.cardNumber,
+                      // cardId: props.card.cardId,
+                      cardId: props.card.cardNumber,
+                      dateOfBirth: props.card.dateOfBirth,
                     })
                   );
                 }}

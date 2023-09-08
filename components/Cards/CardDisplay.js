@@ -5,7 +5,6 @@ import { getSchemeIcon, formatCardNumber, getBankColor } from "@/lib/utils";
 
 const CardDisplay = (props) => {
   const dispatch = useDispatch();
-  console.log(getBankColor(props.card.bank));
   return (
     <div
       className={`rounded-xl w-[725px] p-2 ${props.divclass} ${getBankColor(

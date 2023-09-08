@@ -40,7 +40,7 @@ const TransactionForm = (props) => {
           id="phoneNumber"
           divclass="basis-1/2"
           setFunc={setPaymentDetails}
-          // value={card_details.dob}
+          // value={card_details.dateOfBirth}
         />
         <CardInput
           label="Amount"
