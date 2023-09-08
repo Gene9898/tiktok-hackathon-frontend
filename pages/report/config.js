@@ -26,7 +26,7 @@ export default function SockConfig() {
             setTimeout(function() {
                 //your code here
                }, 2000);
-            stompClient.subscribe("/topic/private", function (greeting) {
+            stompClient.subscribe("/topic/banks", function (greeting) {
                 console.log("received",greeting);
                 setMessage(greeting.body);
             });
@@ -36,7 +36,9 @@ export default function SockConfig() {
     
     
     useEffect(() => {
-        connect()
+        if (token){
+            connect()
+        }
     },[token])
 
     return (
@@ -45,11 +47,14 @@ export default function SockConfig() {
             <button
                 onClick={() => {
                     console.log(token)
-                    console.log("checking",token)
                     stompClient.send(
-                        "/app/sendMessage/" + token,
+                        "/app/report",
                         {},
-                        "testingtesting123"
+                        JSON.stringify({
+                            token: token,
+                            bank: "DBS",
+                            description: "Help me",
+                        })
                     );
                 }}
             >
