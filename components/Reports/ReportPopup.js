@@ -75,6 +75,7 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                   <textarea
                     className="w-full h-24 px-3 py-2 sm:text-lg text-sm border rounded-lg"
                     placeholder="Enter your report details..."
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                   <div className="mt-4 sm:space-x-4 space-x-2">
                   <div>
@@ -89,8 +90,8 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                         {},
                         JSON.stringify({
                             token: token,
-                            bank: { title },
-                            description: "Help me",
+                            bank: title,
+                            description: description,
                         })
                     );
                 }}
