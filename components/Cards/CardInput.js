@@ -35,7 +35,7 @@ const CardInput = (props) => {
           value={props.value}
           type={props.type}
           id={props.id}
-          className={`mr-auto rounded-md text-black text-xs xs:text-base  sm:text-lg md:text-xl lg:text-2xl w-full h-fit mt-2 p-2 ${props.inputclass}`}
+          className={`mr-auto rounded-md text-black text-xs xs:text-base sm:text-lg md:text-xl lg:text-2xl w-full h-fit mt-2 p-2 ${props.inputclass}`}
           onChange={(event) => {
             dispatch(
               props.setFunc({

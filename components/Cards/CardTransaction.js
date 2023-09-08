@@ -6,7 +6,7 @@ import {
   selectCardTransactions,
   setCardTransactions,
   setAdditionalPaymentDetails,
-  selectTransactionCount,
+  selectTransactionCheck,
   selectPaymentDetails,
 } from "@/store/slices/cardSlice";
 import Transaction from "../Transactions/Transaction";
@@ -17,7 +17,7 @@ import TransactionForm from "../Transactions/TransactionForm";
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
   const [selection, setSelection] = useState("none");
-  const transaction_count = useSelector(selectTransactionCount);
+  const transaction_check = useSelector(selectTransactionCheck);
   const payment_details = useSelector(selectPaymentDetails);
 
   useEffect(() => {
@@ -42,10 +42,10 @@ const CardTransaction = (props) => {
       console.log(res);
       alert("Transaction Successful!");
     };
-    if (transaction_count !== 0) {
+    if (transaction_check === true) {
       postData();
     }
-  }, [transaction_count]);
+  }, [transaction_check]);
 
   const DummyTxns = [
     {
@@ -79,6 +79,7 @@ const CardTransaction = (props) => {
       {Object.keys(props.card).length > 0 && (
         <>
           <CardDisplay
+            form={false}
             card={props.card}
             divclass={`w-[60%] h-fit mx-auto ${
               props.effect !== false && "animate-wiggle"
@@ -87,7 +88,7 @@ const CardTransaction = (props) => {
           {selection === "none" && (
             <section className="mt-10 flex flex-wrap w-[60%] mx-auto gap-8 justify-center">
               <button
-                className="bg-blue-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
+                className="bg-rose-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
                 onClick={() => {
                   setSelection("payment");
                 }}
@@ -130,7 +131,7 @@ const CardTransaction = (props) => {
             <section className="flex flex-col mt-10 w-[725px] mx-auto">
               <TransactionForm setSelection={setSelection} />
               <button
-                className="w-full mx-auto btn bg-blue-500 text-2xl mt-10"
+                className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
                 onClick={() => {
                   dispatch(
                     setAdditionalPaymentDetails({

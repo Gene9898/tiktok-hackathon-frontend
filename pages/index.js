@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { initFirebase } from "@/config/firebase";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getReq } from "@/lib/utils";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
+  const dispatch = useDispatch();
   const app = initFirebase();
   console.log(app);
   const provider = new GoogleAuthProvider();
@@ -43,82 +50,56 @@ export default function Home() {
       headers: requestInfo,
     });
     console.log(res);
-
-    // const response = await fetch("http://localhost:8080/test", requestInfo);
-    // const responseBody = await response.json();
-    // console.log(responseBody)
   };
-
-  /*
-  if (user) {
-    return (
-      <div>
-        <div>Signed In</div>
-        <div onClick={() => auth.signOut()}>Sign out</div>
-        <div onClick={() => callApi()}>Test auth</div>
-      </div>
-    );
-  }*/
 
   return (
     <header className="sm:pt-0 pt-4">
-
       <section className="max-w-3xl mx-auto mb-4 sm:mb-1">
-      <div className="text-center bg-rose-600 mb-6 sm:mb-12 sm:mt-8 rounded-xl py-4 sm:py-2 mx-2 sm:mx-1">
-        <h2>Manage Your Finances with Ease</h2>
-        <p>Simplify your financial life with our finance website.</p>
-      </div>
+        <div className="text-center bg-rose-600 mb-6 sm:mb-12 sm:mt-8 rounded-xl py-4 sm:py-2 mx-2 sm:mx-1">
+          <h2>Manage Your Finances with Ease</h2>
+          <p>Simplify your financial life with our finance website.</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-8 gap-6">
           <div className="panel">
             <h3>Safety Ensured</h3>
-              <p>
-               Our website can detect and prevent fradulant transactions.
-              </p>
+            <p>Our website can detect and prevent fradulant transactions.</p>
           </div>
           <div className="panel">
             <h3>Track Your Expenses</h3>
-              <p>
-                Monitor your spending habits and keep an close eye on your financial transactions.
-              </p>
+            <p>
+              Monitor your spending habits and keep an close eye on your
+              financial transactions.
+            </p>
           </div>
           <div className="panel">
             <h3>Secure & Private</h3>
-              <p>
-                Your financial data is encrypted and kept confidential, ensuring your peace of mind.
-              </p>
+            <p>
+              Your financial data is encrypted and kept confidential, ensuring
+              your peace of mind.
+            </p>
           </div>
           <div className="panel">
             <h3>Convenience</h3>
-              <p>
-               Monitor your finances at a click of a button.
-             </p>
+            <p>Monitor your finances at a click of a button.</p>
           </div>
         </div>
       </section>
 
-      
-
       {user ? (
-      <footer className="text-center mt-6 sm:mt-12">
-        <p>Welcome, {user.displayName}!</p>
-        <button
-          onClick={signOutUser}
-          className="log"
-        >
-          Sign Out
-        </button>
-      </footer>
-    ) : (
-      <footer className="text-center sm:mt-12">
-        <p>Get started today and take control of your financial future.</p>
-        <button
-          onClick={signIn}
-          className="log"
-        >
-          Sign In with Google
-        </button>
-      </footer>
-    )}
+        <footer className="text-center mt-6 sm:mt-12">
+          <p>Welcome, {user.displayName}!</p>
+          <button onClick={signOutUser} className="log">
+            Sign Out
+          </button>
+        </footer>
+      ) : (
+        <footer className="text-center sm:mt-12">
+          <p>Get started today and take control of your financial future.</p>
+          <button onClick={signIn} className="log">
+            Sign In with Google
+          </button>
+        </footer>
+      )}
     </header>
   );
 }

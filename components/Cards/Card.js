@@ -43,9 +43,10 @@ const Card = () => {
               {index === saved_cards.length - 1 && (
                 <CardDisplay
                   card={card}
-                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms hover:scale-110 pt-5`}
                 />
               )}
+              {/* pt-5 hover:pt-0 hover:pb-10 */}
               {index !== saved_cards.length - 1 && (
                 <MinimisedCard
                   card={card}

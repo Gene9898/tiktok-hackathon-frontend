@@ -6,7 +6,7 @@ const initialState = {
   card_register_details: {},
   card_transactions: [],
   payment_details: {},
-  transaction_count: 0,
+  transaction_check: false,
 };
 
 export const cardSlice = createSlice({
@@ -23,6 +23,7 @@ export const cardSlice = createSlice({
 
       state.card_register_details[id] = val;
       console.log(state.card_register_details["cardNumber"]);
+      console.log(state.card_register_details["bank"]);
     },
     setCardTransactions(state, action) {
       state.card_transactions = action.payload;
@@ -90,7 +91,7 @@ export const cardSlice = createSlice({
         range[0] * randomMerchFloat +
         baseLat
       ).toFixed(6);
-      state.payment_details["merch_long"] = (
+      state.payment_details["merch_lon"] = (
         range[1] * randomMerchFloat +
         baseLong
       ).toFixed(6);
@@ -98,14 +99,18 @@ export const cardSlice = createSlice({
         singapore.range[0] * randomUserFloat +
         singapore.lat[0]
       ).toFixed(6);
-      state.payment_details["long"] = (
+      state.payment_details["lon"] = (
         singapore.range[1] * randomUserFloat +
         singapore.long[0]
       ).toFixed(6);
       state.payment_details["category"] =
         categoryType[Math.floor(Math.random() * categoryType.length)];
       state.payment_details["cardId"] = cardNumber;
+      state.payment_details["dateTime"] = new Date();
       state.transaction_count++;
+    },
+    setTransactionCheck(state, action) {
+      state.transaction_check = action.payload;
     },
     extraReducers: {
       [HYDRATE]: (state, action) => {
@@ -130,6 +135,6 @@ export const selectCardRegisterDetails = (state) =>
   state.cards.card_register_details;
 export const selectCardTransactions = (state) => state.cards.card_transactions;
 export const selectPaymentDetails = (state) => state.cards.payment_details;
-export const selectTransactionCount = (state) => state.cards.transaction_count;
+export const selectTransactionCheck = (state) => state.cards.transaction_check;
 
 export default cardSlice.reducer;
