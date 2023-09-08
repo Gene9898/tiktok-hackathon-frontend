@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CardDisplay from "./CardDisplay";
-import { useDispatch } from "react-redux";
-import { getReq } from "@/lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { getReq, postReq } from "@/lib/utils";
 import {
   selectCardTransactions,
   setCardTransactions,
+  setAdditionalPaymentDetails,
+  selectTransactionCount,
+  selectPaymentDetails,
 } from "@/store/slices/cardSlice";
 import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
@@ -14,6 +17,8 @@ import TransactionForm from "../Transactions/TransactionForm";
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
   const [selection, setSelection] = useState("none");
+  const transaction_count = useSelector(selectTransactionCount);
+  const payment_details = useSelector(selectPaymentDetails);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +31,21 @@ const CardTransaction = (props) => {
     };
     // fetchData();
   }, [dispatch, props.card.cardNumber]);
+
+  useEffect(() => {
+    const postData = async () => {
+      const res = await postReq({
+        route: "http://localhost:3001/api/posttxn",
+        body: payment_details,
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(res);
+      alert("Transaction Successful!");
+    };
+    if (transaction_count !== 0) {
+      postData();
+    }
+  }, [transaction_count]);
 
   const DummyTxns = [
     {
@@ -85,7 +105,7 @@ const CardTransaction = (props) => {
             </section>
           )}
           {selection === "txn" && (
-            <section className=" mt-10 flex flex-col gap-4 bg-slate-500 w-[60%] mx-auto rounded-2xl p-6">
+            <section className=" mt-10 flex flex-col gap-4 bg-slate-500 w-[725px] mx-auto rounded-2xl p-6">
               <div className="flex flex-wrap">
                 <MdArrowBack
                   size={48}
@@ -107,9 +127,18 @@ const CardTransaction = (props) => {
             </section>
           )}
           {selection === "payment" && (
-            <section className="flex flex-col mt-10 w-[60%] mx-auto">
+            <section className="flex flex-col mt-10 w-[725px] mx-auto">
               <TransactionForm setSelection={setSelection} />
-              <button className="w-full mx-auto btn bg-blue-500 text-2xl mt-10">
+              <button
+                className="w-full mx-auto btn bg-blue-500 text-2xl mt-10"
+                onClick={() => {
+                  dispatch(
+                    setAdditionalPaymentDetails({
+                      cardNumber: props.card.cardNumber,
+                    })
+                  );
+                }}
+              >
                 Make Payment
               </button>
             </section>

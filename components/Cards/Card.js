@@ -27,7 +27,7 @@ const Card = () => {
   return (
     <div className="w-full h-full flex flex-wrap">
       <div className="basis-1/2 h-full ">
-        <div className="mx-auto  w-[60%]">
+        <div className="mx-auto  w-[725px]">
           {saved_cards.map((card, index) => (
             <div
               className={`relative h-24 ${
