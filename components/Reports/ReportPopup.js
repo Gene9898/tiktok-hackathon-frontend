@@ -7,7 +7,7 @@ let stompClient;
 import { useSelector } from "react-redux";
 import { getToken } from "@/store/slices/tokenSlice";
 
-export default function ReportPopup({ transactionId, title, amount, onClose }) {
+export default function ReportPopup({ transactionId, title, amount, bank, onClose }) {
   const [isReported, setIsReported] = useState(false);
 
   const token = useSelector(getToken);
@@ -64,8 +64,9 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                 <h3 className='sm:text-2xl text-base font-semibold'>Transaction Details</h3>
                 <div className="mt-2 mb-6">
                 <p>Transaction ID: { transactionId }</p>
+                <p>Title: { title }</p>
+                <p>Bank: { bank }</p>
                 <p>Amount: ${ amount }</p>
-                <p>Description: { title }</p>
                 <p>Date: </p>
               </div>
                 <p>
@@ -77,9 +78,7 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                     placeholder="Enter your report details..."
                     onChange={(e) => setDescription(e.target.value)}
                   />
-                  <div className="mt-4 sm:space-x-4 space-x-2">
-                  <div>
-            <div>{message}</div>
+                  <div className="flex mt-4 sm:space-x-4 space-x-2">
             <button
             className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                 onClick={() => {
@@ -90,7 +89,7 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                         {},
                         JSON.stringify({
                             token: token,
-                            bank: title,
+                            bank: bank,
                             description: description,
                         })
                     );
@@ -98,7 +97,6 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
             >
                 Submit Report
             </button>
-        </div>
                   <button
                     className="bg-rose-600 hover:bg-rose-500 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={onClose}
@@ -106,8 +104,8 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                     Cancel
                   </button>
                   </div>
+                  </div>
                 </div>
-              </div>
             )}
         </div>
         </div>

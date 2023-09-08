@@ -32,6 +32,7 @@ const Transaction = (props) => {
         <ReportPopup
           transactionId={props.id}
           title={props.title}
+          bank={props.bank}
           amount={props.amount}
           onClose={() => setIsPopupOpen(false)}
         />
