@@ -62,12 +62,12 @@ export default function Home() {
 
   return (
     <header className="sm:pt-0 pt-4">
-      <div className="text-center mb-6 sm:mb-12 sm:mt-8">
+
+      <section className="max-w-3xl mx-auto mb-4 sm:mb-1">
+      <div className="text-center bg-rose-600 mb-6 sm:mb-12 sm:mt-8 rounded-xl py-4 sm:py-2 mx-2 sm:mx-1">
         <h2>Manage Your Finances with Ease</h2>
         <p>Simplify your financial life with our finance website.</p>
       </div>
-
-      <section className="max-w-3xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-8 gap-6">
           <div className="panel">
             <h3>Safety Ensured</h3>

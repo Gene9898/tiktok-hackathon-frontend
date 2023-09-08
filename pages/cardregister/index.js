@@ -25,7 +25,7 @@ const CardRegister = () => {
 
   return (
     <div className="flex flex-col gap-4 mx-auto container h-full">
-      <h1 className="">Add Card</h1>
+      <h1>Add Card</h1>
       <CardDisplay card={card_detail} divclass="basis-[40%] w-[40%]" />
       <CardForm />
       <button
