@@ -19,7 +19,7 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
             </div>
             <div className='flex justify-center'>
                 <button
-                    className="w-full bg-red-700 hover:bg-red-800 text-white py-1 px-3 rounded-lg text-base font-semibold transition duration-300 ease-in-out"
+                    className="w-full bg-rose-600 hover:bg-rose-500 text-white py-1 px-3 rounded-lg text-base font-semibold transition duration-300 ease-in-out"
                     onClick={onClose}
                   >
                     Close
@@ -45,13 +45,13 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                   />
                   <div className="mt-4 sm:space-x-4 space-x-2">
                   <button
-                    className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
+                    className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={handleReport}
                   >
                     Submit Report
                   </button>
                   <button
-                    className="bg-red-700 hover:bg-red-800 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
+                    className="bg-rose-600 hover:bg-rose-500 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={onClose}
                   >
                     Cancel
