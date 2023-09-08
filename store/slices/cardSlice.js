@@ -5,6 +5,7 @@ const initialState = {
   saved_cards: [],
   card_register_details: {},
   card_transactions: [],
+  payment_details:{},
 };
 
 export const cardSlice = createSlice({
@@ -25,6 +26,9 @@ export const cardSlice = createSlice({
     setCardTransactions(state, action) {
       state.card_transactions = action.payload;
     },
+    setPaymentDetails(state,action) {
+      
+    },
     extraReducers: {
       [HYDRATE]: (state, action) => {
         return {
@@ -42,4 +46,5 @@ export const selectSavedCards = (state) => state.cards.saved_cards;
 export const selectCardRegisterDetails = (state) =>
   state.cards.card_register_details;
 export const selectCardTransactions = (state) => state.cards.card_transactions;
+export const selectPaymentDetails = (state) => state.cards.payment_details;
 export default cardSlice.reducer;

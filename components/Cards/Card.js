@@ -29,7 +29,7 @@ const Card = () => {
       <div className="w-full h-full">
         {saved_cards.map((card, index) => (
           <div
-            className={`relative h-24 ${
+            className={`relative h-24 mx-auto w-[60%] ${
               effect === index && "animate-wiggle"
             } cursor-pointer`}
             key={"card-" + index}
@@ -42,7 +42,7 @@ const Card = () => {
             {index === saved_cards.length - 1 && (
               <CardDisplay
                 card={card}
-                divclass={`absolute border-t-8 border-gray-500 rounded-xl w-[60%] transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10 z-10`}
               />
             )}
             {index !== saved_cards.length - 1 && (
@@ -50,7 +50,7 @@ const Card = () => {
                 card={card}
                 divclass={`absolute ${
                   index !== 0 && "border-t-8"
-                } border-gray-500 h-fit w-[60%] transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                } border-gray-500 h-fit w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10 z-[${index}]}`}
               />
             )}
           </div>
