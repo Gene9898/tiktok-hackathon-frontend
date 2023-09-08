@@ -47,25 +47,25 @@ const Cards = () => {
 
       {isReported && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
-          <div className="bg-slate-700 w-[60%] rounded-3xl p-10 container mx-auto">
+          <div className="w-[90%] sm:w-[60%] p-10 container mx-auto">
             <div className="flex flex-col gap-6 mx-auto container h-full">
-              <div className="flex justify-between">
-              <h3>Add Card</h3>
-                <div className="space-x-8 mr-2 text-xl">
-                <button
-                className="hover:text-blue-400"
-                onClick={submitForm}
-              >
-                Save
-              </button>
-              <button
-                className="hover:text-red-500"
-                onClick={handleClose}
-              >
-                Cancel
-              </button>
-                </div>
-              </div>
+            <div className="flex items-center justify-between">
+  <h3 className="text-sm sm:text-lg mr-4">Add Card</h3>
+  <div className="sm:space-x-8 space-x-4">
+    <button
+      className="hover:text-blue-400 text-xs xs:text-sm sm:text-base lg:text-xl"
+      onClick={submitForm}
+    >
+      Save
+    </button>
+    <button
+      className="hover:text-red-500 text-xs xs:text-sm sm:text-base lg:text-xl"
+      onClick={handleClose}
+    >
+      Cancel
+    </button>
+  </div>
+</div>
               <div className="flex justify-center">
                 <CardForm />
               </div>
