@@ -63,7 +63,7 @@
   }
 
   .flexbox {
-    @apply container max-w-4xl px-4 py-4 mx-auto pb-8 text-lg;
+    @apply container max-w-screen-2xl px-4 py-4 mx-auto pb-8 text-lg;
   }
 
   .panel{

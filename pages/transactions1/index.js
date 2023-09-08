@@ -34,7 +34,7 @@ const DummyData = [
 
 export default function Transactions() {
   return (
-    <main className="container max-w-3xl px-4 mx-auto">
+    <main className="container max-w-7xl px-4 mx-auto">
       <section className="py-3">
         <small className="text-gray-400 text-md">My Balance</small>
         <h2>{currencyFormatter(100000)}</h2>

@@ -76,7 +76,7 @@ export default function Home() {
     <div className="flex justify-center">
       <div className="sm:pt-0 pt-4">
 
-<section className="max-w-3xl mb-4 sm:mb-1">
+<section className="max-w-7xl mb-4 sm:mb-1">
 <div className="text-center bg-rose-600 mb-6 sm:mb-12 sm:mt-8 rounded-xl py-4 sm:py-2">
   <h2>Manage Your Finances with Ease</h2>
   <p>Simplify your financial life with our finance website.</p>
