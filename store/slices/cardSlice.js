@@ -23,8 +23,17 @@ export const cardSlice = createSlice({
     setCardRegistrationDetails(state, action) {
       const id = action.payload.id;
       let val = action.payload.val;
-
-      state.card_register_details[id] = val;
+      console.log(val);
+      if (id === "expirationDate") {
+        state.card_register_details["expiryYear"] = val.split("-")[0];
+        state.card_register_details["expiryMonth"] = val.split("-")[1];
+      } else {
+        state.card_register_details[id] = val;
+      }
+      console.log(
+        state.card_register_details["expiryMonth"],
+        state.card_register_details["expiryYear"]
+      );
       console.log(state.card_register_details["cardNumber"]);
       console.log(state.card_register_details["bank"]);
     },
