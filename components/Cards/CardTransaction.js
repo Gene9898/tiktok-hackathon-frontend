@@ -22,6 +22,7 @@ const CardTransaction = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // TODO needa to get card id from redux stored cards
       const res = await getReq({
         route: `http://localhost:3001/api/${props.card.cardNumber}`,
         headers: {},
@@ -35,6 +36,7 @@ const CardTransaction = (props) => {
   useEffect(() => {
     const postData = async () => {
       const res = await postReq({
+        //TODO post with the card in the tx obj
         route: "http://localhost:3001/api/posttxn",
         body: payment_details,
         headers: { "Content-Type": "application/json" },

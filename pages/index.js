@@ -46,7 +46,7 @@ export default function Home() {
     };
 
     const res = getReq({
-      route: "http://localhost:8080/test",
+      route: "http://localhost:8081/",
       headers: requestInfo,
     });
     console.log(res);

@@ -14,8 +14,10 @@ const Card = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getReq({
-        route: "http://localhost:3001/api/getcarddetails",
+      // TODO card need to send user id
+      // return card id in each obj
+      const res = await getReq({ 
+        route: "http://localhost:8082/cards",
         headers: {},
       });
       console.log(res);

@@ -18,6 +18,7 @@ const Cards = () => {
 
   const fetchData = async () => {
     const res = await getReq({
+      // TODO 
       route: "http://localhost:3001/api/getcarddetails",
       headers: {},
     });
@@ -42,6 +43,7 @@ const Cards = () => {
     console.log(check);
     if (check) {
       const res = await postReq({
+        //TODO send user id with the obj too
         route: "http://localhost:3001/api/postcarddetails",
         body: card_detail,
         headers: { "Content-Type": "application/json" },
