@@ -18,7 +18,7 @@ const CardDisplay = (props) => {
 
   return (
     <div
-      className={`rounded-xl w-[60%] p-2 ${props.divclass} ${getBankColor(
+      className={`rounded-xl w-[725px] p-2 ${props.divclass} ${getBankColor(
         props.card.bank
       )}`}
     >
@@ -41,7 +41,7 @@ const CardDisplay = (props) => {
               Valid Thru
             </h6>
           )}
-          <h1 className="h-14 p-2 ">{props.card.expirationDate}</h1>
+          <h1 className="h-14 p-2">{props.card.expirationDate}</h1>
         </section>
 
         {props.card.cardNumber &&
