@@ -1,4 +1,3 @@
-import { setCardRegistrationDetails } from "@/store/slices/cardSlice";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,7 +22,7 @@ const CardInput = (props) => {
           onChange={(event) => {
             let val = event.target.value.replace(/ /g, "");
             dispatch(
-              setCardRegistrationDetails({
+              props.setFunc({
                 id: props.id,
                 val: val,
               })
@@ -36,10 +35,10 @@ const CardInput = (props) => {
           value={props.value}
           type={props.type}
           id={props.id}
-          className={`mr-auto rounded-md text-black text-xs xs:text-base  sm:text-lg md:text-xl lg:text-2xl w-full h-fit mt-2 p-2 ${props.inputclass}`}
+          className={`mr-auto rounded-md text-black text-xs xs:text-base sm:text-lg md:text-xl lg:text-2xl w-full h-fit mt-2 p-2 ${props.inputclass}`}
           onChange={(event) => {
             dispatch(
-              setCardRegistrationDetails({
+              props.setFunc({
                 id: props.id,
                 val: event.target.value,
               })

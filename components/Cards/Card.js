@@ -14,8 +14,10 @@ const Card = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await getReq({
-        route: "http://localhost:3001/api/getcarddetails",
+      // TODO card need to send user id
+      // return card id in each obj
+      const res = await getReq({ 
+        route: "http://localhost:8082/cards",
         headers: {},
       });
       console.log(res);
@@ -27,7 +29,7 @@ const Card = () => {
   return (
     <div className="w-full h-full flex flex-wrap">
       <div className="basis-1/2 h-full ">
-        <div className="mx-auto  w-[60%]">
+        <div className="mx-auto  w-[725px]">
           {saved_cards.map((card, index) => (
             <div
               className={`relative h-24 ${
@@ -43,9 +45,10 @@ const Card = () => {
               {index === saved_cards.length - 1 && (
                 <CardDisplay
                   card={card}
-                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms hover:scale-110 pt-5`}
                 />
               )}
+              {/* pt-5 hover:pt-0 hover:pb-10 */}
               {index !== saved_cards.length - 1 && (
                 <MinimisedCard
                   card={card}

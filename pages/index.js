@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { initFirebase } from "@/config/firebase";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+} from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getReq } from "@/lib/utils";
-import SockConfig from "./report/config";
-import { setToken } from "@/store/slices/tokenSlice";
-import { useDispatch } from "react-redux";
-
-
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -65,27 +66,11 @@ export default function Home() {
     };
 
     const res = getReq({
-      route: "http://localhost:8080/test",
+      route: "http://localhost:8081/",
       headers: requestInfo,
     });
     console.log(res);
-
-    // const response = await fetch("http://localhost:8080/test", requestInfo);
-    // const responseBody = await response.json();
-    // console.log(responseBody)
   };
-
-  /*
-  if (user) {
-    return (
-      <div>
-        <div>Signed In</div>
-        <div onClick={() => auth.signOut()}>Sign out</div>
-        <div onClick={() => getToken()}>Get token</div>
-        <SockConfig/>
-      </div>
-    );
-  }*/
 
   return (
     <div className="flex justify-center">

@@ -1,24 +1,14 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FcSimCardChip } from "react-icons/fc";
-import { getCardType } from "@/lib/utils";
-import { setCardRegistrationDetails } from "@/store/slices/cardSlice";
 import { getSchemeIcon, formatCardNumber, getBankColor } from "@/lib/utils";
 
 const CardDisplay = (props) => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (props.card.cardNumber !== undefined) {
-      const res = getCardType(props.card.cardNumber);
-      dispatch(setCardRegistrationDetails({ id: "scheme", val: res.scheme }));
-      dispatch(setCardRegistrationDetails({ id: "bank", val: res.bank }));
-    }
-  }, [dispatch, props.card.cardNumber]);
-
+  console.log(getBankColor(props.card.bank));
   return (
     <div
-      className={` rounded-xl w-[60%] p-2 ${props.divclass} ${getBankColor(
+      className={`rounded-xl w-[725px] p-2 ${props.divclass} ${getBankColor(
         props.card.bank
       )}`}
     >
@@ -41,7 +31,7 @@ const CardDisplay = (props) => {
               Valid Thru
             </h6>
           )}
-          <h1 className="h-14 p-2 ">{props.card.expirationDate}</h1>
+          <h1 className="h-14 p-2">{props.card.expirationDate}</h1>
         </section>
 
         {props.card.cardNumber &&

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import CardDisplay from "./CardDisplay";
-import { useDispatch } from "react-redux";
-import { getReq } from "@/lib/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { getReq, postReq } from "@/lib/utils";
 import {
   selectCardTransactions,
   setCardTransactions,
+  setAdditionalPaymentDetails,
+  selectTransactionCheck,
+  selectPaymentDetails,
 } from "@/store/slices/cardSlice";
 import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
@@ -14,9 +17,12 @@ import TransactionForm from "../Transactions/TransactionForm";
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
   const [selection, setSelection] = useState("none");
+  const transaction_check = useSelector(selectTransactionCheck);
+  const payment_details = useSelector(selectPaymentDetails);
 
   useEffect(() => {
     const fetchData = async () => {
+      // TODO needa to get card id from redux stored cards
       const res = await getReq({
         route: `http://localhost:3001/api/${props.card.cardNumber}`,
         headers: {},
@@ -26,6 +32,22 @@ const CardTransaction = (props) => {
     };
     // fetchData();
   }, [dispatch, props.card.cardNumber]);
+
+  useEffect(() => {
+    const postData = async () => {
+      const res = await postReq({
+        //TODO post with the card in the tx obj
+        route: "http://localhost:3001/api/posttxn",
+        body: payment_details,
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log(res);
+      alert("Transaction Successful!");
+    };
+    if (transaction_check === true) {
+      postData();
+    }
+  }, [transaction_check]);
 
   const DummyTxns = [
     {
@@ -59,6 +81,7 @@ const CardTransaction = (props) => {
       {Object.keys(props.card).length > 0 && (
         <>
           <CardDisplay
+            form={false}
             card={props.card}
             divclass={`w-[60%] h-fit mx-auto ${
               props.effect !== false && "animate-wiggle"
@@ -67,7 +90,7 @@ const CardTransaction = (props) => {
           {selection === "none" && (
             <section className="mt-10 flex flex-wrap w-[60%] mx-auto gap-8 justify-center">
               <button
-                className="bg-blue-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
+                className="bg-rose-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
                 onClick={() => {
                   setSelection("payment");
                 }}
@@ -85,7 +108,7 @@ const CardTransaction = (props) => {
             </section>
           )}
           {selection === "txn" && (
-            <section className=" mt-10 flex flex-col gap-4 bg-slate-500 w-[60%] mx-auto rounded-2xl p-6">
+            <section className=" mt-10 flex flex-col gap-4 bg-slate-500 w-[725px] mx-auto rounded-2xl p-6">
               <div className="flex flex-wrap">
                 <MdArrowBack
                   size={48}
@@ -107,9 +130,18 @@ const CardTransaction = (props) => {
             </section>
           )}
           {selection === "payment" && (
-            <section className="flex flex-col mt-10 w-[60%] mx-auto">
+            <section className="flex flex-col mt-10 w-[725px] mx-auto">
               <TransactionForm setSelection={setSelection} />
-              <button className="w-full mx-auto btn bg-blue-500 text-2xl mt-10">
+              <button
+                className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
+                onClick={() => {
+                  dispatch(
+                    setAdditionalPaymentDetails({
+                      cardNumber: props.card.cardNumber,
+                    })
+                  );
+                }}
+              >
                 Make Payment
               </button>
             </section>
