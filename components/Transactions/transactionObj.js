@@ -3,7 +3,7 @@ import ReportPopup from 'components/Reports/ReportPopup';
 
 const { currencyFormatter } = require("lib/utils");
 
-function TransactionObj({ color, title, amount, id }) {
+function TransactionObj({ color, title, bank, amount, id }) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleReportClick = () => {
@@ -30,7 +30,7 @@ function TransactionObj({ color, title, amount, id }) {
         <ReportPopup
           transactionId={id}
           title={title}
-          bank={props.bank}
+          bank={bank}
           amount={amount}
           onClose={() => setIsPopupOpen(false)}
         />
