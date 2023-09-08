@@ -45,6 +45,7 @@ export default function SockConfig() {
         <div>
             <div>{message}</div>
             <button
+            className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                 onClick={() => {
                     console.log(token)
                     stompClient.send(
@@ -52,13 +53,13 @@ export default function SockConfig() {
                         {},
                         JSON.stringify({
                             token: token,
-                            bank: "DBS",
+                            bank: "{}",
                             description: "Help me",
                         })
                     );
                 }}
             >
-                Send report
+                Submit Report
             </button>
         </div>
     );

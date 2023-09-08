@@ -1,11 +1,44 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
+let stompClient;
+
+import { useSelector } from "react-redux";
+import { getToken } from "@/store/slices/tokenSlice";
 
 export default function ReportPopup({ transactionId, title, amount, onClose }) {
   const [isReported, setIsReported] = useState(false);
 
-  const handleReport = () => {
-    setIsReported(true);
-  };
+  const token = useSelector(getToken);
+
+  const [message, setMessage] = useState("You server message here.");
+
+
+  const connect = async () => {
+    var sock = new SockJS("http://localhost:8082/ws?token=" + token);
+    stompClient = Stomp.over(sock);
+    sock.onopen = function () {
+      console.log("open");
+    };
+    stompClient.connect({}, function (frame) {
+      console.log("Connected: " + frame);
+      setTimeout(function() {
+      }, 2000);
+      stompClient.subscribe("/topic/banks", function (greeting) {
+        console.log("received",greeting);
+        setMessage(greeting.body);
+      });
+    });
+  }
+
+    
+    
+  useEffect(() => {
+    if (token){
+      connect()
+    }
+  },[token])
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -44,12 +77,27 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                     placeholder="Enter your report details..."
                   />
                   <div className="mt-4 sm:space-x-4 space-x-2">
-                  <button
-                    className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
-                    onClick={handleReport}
-                  >
-                    Submit Report
-                  </button>
+                  <div>
+            <div>{message}</div>
+            <button
+            className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
+                onClick={() => {
+                    setIsReported(true);
+                    console.log(token)
+                    stompClient.send(
+                        "/app/report",
+                        {},
+                        JSON.stringify({
+                            token: token,
+                            bank: { title },
+                            description: "Help me",
+                        })
+                    );
+                }}
+            >
+                Submit Report
+            </button>
+        </div>
                   <button
                     className="bg-rose-600 hover:bg-rose-500 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={onClose}
