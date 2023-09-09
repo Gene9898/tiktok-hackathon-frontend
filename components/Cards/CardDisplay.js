@@ -25,12 +25,14 @@ const CardDisplay = (props) => {
           <h1 className="float-left mr-4 h-14 rounded-md w-1/2 p-2 ">
             {props.card.name}
           </h1>
-          {props.card.expirationDate && (
+          {props.card.expirationYear && props.card.expirationMonth && (
             <h6 className="float-left h-14 w-10 p-2 mr-6 text-[18px]">
               Valid Thru
             </h6>
           )}
-          <h1 className="h-14 p-2">{props.card.expirationDate}</h1>
+          <h1 className="h-14 p-2">
+            {props.card.expirationYear}-{props.card.expirationMonth}
+          </h1>
         </section>
 
         {props.card.cardNumber &&
