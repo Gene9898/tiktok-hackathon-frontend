@@ -23,7 +23,7 @@ const CardTransaction = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getReq({
-        route: `http://localhost:3001/api/${props.card.cardNumber}`,
+        route: `http://localhost:3000/api/${props.card.cardNumber}`,
         headers: {},
       });
       console.log(res);
@@ -35,7 +35,7 @@ const CardTransaction = (props) => {
   useEffect(() => {
     const postData = async () => {
       const res = await postReq({
-        route: "http://localhost:3001/api/posttxn",
+        route: "http://localhost:3000/api/posttxn",
         body: payment_details,
         headers: { "Content-Type": "application/json" },
       });
