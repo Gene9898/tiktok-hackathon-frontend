@@ -15,7 +15,7 @@ const CardTxnDisplay = (props) => {
   console.log(getBankColor(props.card.bank));
   return (
     <div
-      className={`rounded-xl w-[600px] p-2 ${props.divclass} ${getBankColor(
+      className={`rounded-xl sm:w-[75%] w-3/5 p-2 ${props.divclass} ${getBankColor(
         props.card.bank
       )}`}
     >
