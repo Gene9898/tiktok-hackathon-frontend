@@ -18,7 +18,7 @@ module.exports = {
         },
       },
       transitionProperty: {
-        spacing: "margin,padding",
+        spacing: "margin,padding,scale",
         wh: "width,height",
         position: "top,bottom,right,left",
       },

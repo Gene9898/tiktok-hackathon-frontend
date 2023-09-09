@@ -16,7 +16,7 @@ import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
 import CardForm from "./CardForm";
 import TransactionForm from "../Transactions/TransactionForm";
-import { TX_SERVICE } from "@/config/configs";
+// import { TX_SERVICE } from "@/config/configs";
 
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
@@ -29,8 +29,10 @@ const CardTransaction = (props) => {
     const fetchData = async () => {
       // TODO needa to get card id from redux stored cards
       const res = await getReq({
-        route: CARD_SERVICE + props.card.cardId,
-        headers:  {Authorization: "Bearer " + token}
+        // route: CARD_SERVICE + props.card.cardId,
+        // headers:  {Authorization: "Bearer " + token}
+        route: "http://localhost:3000/api/getcarddetails",
+        headers: {},
       });
       console.log(res);
       dispatch(setCardTransactions(res));
@@ -58,17 +60,17 @@ const CardTransaction = (props) => {
   }, [transaction_check]);
 
   return (
-    <div className="w-[50%] h-full">
+    <div className="mt-10 basis-1/2 h-full lg:basis-1/2 md:basis-full sm:basis-full">
       {Object.keys(props.card).length > 0 && (
-        <>
+        <div className="w-[750px]">
           <CardTxnDisplay
             form={false}
             card={props.card}
-            divclass={`w-[60%] h-fit mx-auto ${
+            divclass={`w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 ${
               props.effect !== false && "animate-wiggle"
             }`}
           />
-          {selection === "none" && (
+          {/* {selection === "none" && (
             <section className="mt-10 flex flex-wrap w-[60%] mx-auto gap-8 justify-center">
               <button
                 className="bg-rose-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
@@ -87,37 +89,37 @@ const CardTransaction = (props) => {
                 Transaction History
               </button>
             </section>
-          )}
-          {selection === "txn" && (
-            <section className=" mt-10 flex flex-col gap-4 bg-slate-500 w-[725px] mx-auto rounded-2xl p-6">
-              <div className="flex flex-wrap">
-                <MdArrowBack
-                  size={48}
-                  className="hover:scale-125 cursor-pointer"
-                  onClick={() => {
-                    setSelection("none");
-                  }}
+          )} */}
+          {/* {selection === "txn" && ( */}
+          <section className="mt-10 flex flex-col gap-4 bg-slate-500 w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 rounded-2xl p-6">
+            <div className="flex flex-wrap">
+              <MdArrowBack
+                size={48}
+                className="hover:scale-125 cursor-pointer"
+                onClick={() => {
+                  setSelection("none");
+                }}
+              />
+              <h2 className="ml-auto">Transactions</h2>
+            </div>
+            {transaction_details.map((txn, index) => (
+              <>
+                {(index === 0 ||
+                  transaction_details[index - 1]["transactionDateTime"] !==
+                    transaction_details[index]["transactionDateTime"]) && (
+                  <h3 className="ml-16">{txn["transactionDateTime"]}</h3>
+                )}
+                <Transaction
+                  key={"transaction-" + index}
+                  risk={txn.risk}
+                  title={txn.name}
+                  amount={txn.amount}
                 />
-                <h1 className="ml-auto">Transactions</h1>
-              </div>
-              {transaction_details.map((txn, index) => (
-                <>
-                  {(index === 0 ||
-                    transaction_details[index - 1]["transactionDateTime"] !==
-                      transaction_details[index]["transactionDateTime"]) && (
-                    <h3 className="ml-16">{txn["transactionDateTime"]}</h3>
-                  )}
-                  <Transaction
-                    key={"transaction-" + index}
-                    risk={txn.risk}
-                    title={txn.name}
-                    amount={txn.amount}
-                  />
-                </>
-              ))}
-            </section>
-          )}
-          {selection === "payment" && (
+              </>
+            ))}
+          </section>
+          {/* )} */}
+          {/* {selection === "payment" && (
             <section className="flex flex-col mt-10 w-[725px] mx-auto">
               <TransactionForm setSelection={setSelection} />
               <button
@@ -139,8 +141,8 @@ const CardTransaction = (props) => {
                 Make Payment
               </button>
             </section>
-          )}
-        </>
+          )} */}
+        </div>
       )}
     </div>
   );
