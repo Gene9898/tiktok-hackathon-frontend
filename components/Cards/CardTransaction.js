@@ -66,7 +66,7 @@ const CardTransaction = (props) => {
           <CardTxnDisplay
             form={false}
             card={props.card}
-            divclass={`w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 ${
+            divclass={`sm:w-[75%] w-3/5 md:mx-0 sm:mx-0 ${
               props.effect !== false && "animate-wiggle"
             }`}
           />
@@ -91,7 +91,7 @@ const CardTransaction = (props) => {
             </section>
           )} */}
           {/* {selection === "txn" && ( */}
-          <section className="mt-10 flex flex-col gap-4 bg-slate-900 w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 rounded-2xl p-6">
+          <section className="mt-10 flex flex-col gap-4 bg-slate-900 sm:w-[75%] w-3/5 md:mx-0 sm:mx-0 rounded-2xl p-6">
             <div className="flex flex-wrap">
               {/* <MdArrowBack
                 size={48}
