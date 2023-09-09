@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CardDisplay from "./CardDisplay";
 import { useDispatch, useSelector } from "react-redux";
-import { getReq, postReq } from "@/lib/utils";
+import { getReq, postReq, paymentFormValidation } from "@/lib/utils";
 import {
   selectCardTransactions,
   setCardTransactions,
@@ -122,13 +122,17 @@ const CardTransaction = (props) => {
               <button
                 className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
                 onClick={() => {
-                  dispatch(
-                    setAdditionalPaymentDetails({
-                      // cardId: props.card.cardId,
-                      cardId: props.card.cardNumber,
-                      dateOfBirth: props.card.dateOfBirth,
-                    })
-                  );
+                  let check = paymentFormValidation(payment_details);
+                  if (check) {
+                    dispatch(
+                      setAdditionalPaymentDetails({
+                        // cardId: props.card.cardId,
+                        cardId: props.card.cardNumber,
+                        dateOfBirth: props.card.dateOfBirth,
+                      })
+                    );
+                    document.getElementById("txn-form").reset();
+                  }
                 }}
               >
                 Make Payment

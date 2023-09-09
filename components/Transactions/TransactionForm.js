@@ -14,7 +14,10 @@ const TransactionForm = (props) => {
   const payment_details = useSelector(selectPaymentDetails);
 
   return (
-    <form className="flex flex-wrap w-full bg-slate-400 rounded-xl p-4 justify-center font-mono mx-auto">
+    <form
+      className="flex flex-wrap w-full bg-slate-400 rounded-xl p-4 justify-center font-mono mx-auto"
+      id="txn-form"
+    >
       <div className="flex flex-wrap w-full">
         <MdArrowBack
           size={48}
@@ -41,6 +44,7 @@ const TransactionForm = (props) => {
           divclass="basis-1/2"
           setFunc={setPaymentDetails}
           // value={card_details.dateOfBirth}
+          maxLength={8}
         />
         <CardInput
           label="Amount"
