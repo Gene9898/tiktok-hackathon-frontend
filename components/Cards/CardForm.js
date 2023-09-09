@@ -19,7 +19,7 @@ const CardForm = () => {
 
   return (
     <form
-      className="flex flex-wrap bg-rose-600 rounded-xl p-4 justify-center font-mono text-left"
+      className="flex flex-wrap p-4 justify-center font-mono text-left"
       id="card-form"
     >
       <CardInput
