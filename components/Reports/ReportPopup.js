@@ -7,7 +7,7 @@ let stompClient;
 import { useSelector } from "react-redux";
 import { getToken } from "@/store/slices/tokenSlice";
 
-export default function ReportPopup({ transactionId, title, amount, bank, onClose }) {
+export default function ReportPopup({ transactionId, title, bank, amount, date, onClose }) {
   const [isReported, setIsReported] = useState(false);
 
   const token = useSelector(getToken);
@@ -67,7 +67,7 @@ export default function ReportPopup({ transactionId, title, amount, bank, onClos
                 <p>Title: { title }</p>
                 <p>Bank: { bank }</p>
                 <p>Amount: ${ amount }</p>
-                <p>Date: </p>
+                <p>Date: { date }</p>
               </div>
                 <p>
                   Please provide additional information for your report (if any).
