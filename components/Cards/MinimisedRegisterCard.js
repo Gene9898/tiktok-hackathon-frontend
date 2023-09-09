@@ -11,7 +11,7 @@ import {
 } from "@/lib/utils";
 import { BsDot } from "react-icons/bs";
 
-const MinimisedCard = (props) => {
+const MinimisedRegisterCard = (props) => {
   const dispatch = useDispatch();
   const censorDots = [1, 2, 3, 4];
   console.log(getBankColor(props.card.bank));
@@ -62,4 +62,4 @@ const MinimisedCard = (props) => {
   );
 };
 
-export default MinimisedCard;
+export default MinimisedRegisterCard;

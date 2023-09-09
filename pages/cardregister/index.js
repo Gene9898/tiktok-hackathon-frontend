@@ -1,5 +1,5 @@
 import React from "react";
-import CardDisplay from "@/components/Cards/CardDisplay";
+import CardTxnDisplay from "@/components/Cards/CardTxnDisplay";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCardRegisterDetails } from "@/store/slices/cardSlice";
 import CardForm from "@/components/Cards/CardForm";
@@ -26,7 +26,7 @@ const CardRegister = () => {
   return (
     <div className="flex flex-col gap-4 mx-auto container h-full">
       <h1>Add Card</h1>
-      <CardDisplay card={card_detail} divclass="basis-[40%] w-[40%]" />
+      <CardTxnDisplay card={card_detail} divclass="basis-[40%] w-[40%]" />
       <CardForm />
       <button
         className="basis-[8%] w-[40%] bg-slate-400 rounded-md text-3xl hover:bg-blue-400 p-2 mb-10"

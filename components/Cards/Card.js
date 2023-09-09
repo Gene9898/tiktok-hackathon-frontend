@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getReq } from "@/lib/utils";
 import { setSavedCards, selectSavedCards } from "@/store/slices/cardSlice";
 import { useDispatch, useSelector } from "react-redux";
-import CardDisplay from "./CardDisplay";
-import MinimisedCard from "./MinimisedCard";
+import CardTxnDisplay from "./CardTxnDisplay";
+import MinimisedTxnCard from "./MinimisedTxnCard";
 import CardTransaction from "./CardTransaction";
 
 const Card = () => {
@@ -41,14 +41,14 @@ const Card = () => {
               onAnimationEnd={() => setEffect(false)}
             >
               {index === saved_cards.length - 1 && (
-                <CardDisplay
+                <CardTxnDisplay
                   card={card}
                   divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms hover:scale-110 pt-5`}
                 />
               )}
               {/* pt-5 hover:pt-0 hover:pb-10 */}
               {index !== saved_cards.length - 1 && (
-                <MinimisedCard
+                <MinimisedTxnCard
                   card={card}
                   divclass={`absolute ${
                     index !== 0 && "border-t-8"
