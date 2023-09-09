@@ -69,7 +69,7 @@
   }
 
   .log {
-    @apply block text-black px-4 py-2 font-semibold rounded-full bg-white hover:bg-gray-300 text-base sm:text-lg text-sm font-semibold transition duration-300 ease-in-out;
+    @apply block text-black px-4 py-2 font-semibold rounded-full bg-white hover:bg-gray-400 text-base sm:text-lg text-sm font-semibold transition duration-300 ease-in-out;
   }
 
   .image{
@@ -156,6 +156,8 @@
   .flexbox{
     @apply container max-w-4xl px-0 py-4 mx-auto pb-2 text-xs;
   }
+
+  
 }
 
 @media (max-width: 350px) {
@@ -185,5 +187,9 @@
 
   .image{
     @apply object-scale-down h-3 mr-1;
+  }
+
+  :link{
+    @apply px-1 py-1 text-white capitalize hover:bg-rose-500 hover:border-rose-500 hover:scale-100 rounded-xl;
   }
 }
