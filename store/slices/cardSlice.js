@@ -22,7 +22,11 @@ export const cardSlice = createSlice({
     setCardRegistrationDetails(state, action) {
       const id = action.payload.id;
       let val = action.payload.val;
+      const userId = action.payload.userId;
       console.log(val);
+      if (userId) {
+        state.card_register_details["userId"] = userId;
+      }
       if (val === "") {
         delete state.card_register_details[id];
       } else if (id === "expirationDate") {

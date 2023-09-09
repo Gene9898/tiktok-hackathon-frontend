@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { selectUserId } from "@/store/slices/authSlice";
 
 const CardInput = (props) => {
   const dispatch = useDispatch();
+  const userId = useSelector(selectUserId);
   return (
     <div className={`flex flex-col flex-wrap p-2 ${props.divclass} `}>
       <label
@@ -28,6 +30,7 @@ const CardInput = (props) => {
               props.setFunc({
                 id: props.id,
                 val: val,
+                userId:userId,
               })
             );
           }}
