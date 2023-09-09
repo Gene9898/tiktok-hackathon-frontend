@@ -9,6 +9,7 @@ export default function Navbar() {
           <Link href="/">Home</Link>
           <Link href="/transactions">Transactions</Link>
           <Link href="/cardsPage">Cards</Link>
+          <Link href="/reports">Reports</Link>
         </div>
       </div>
     </header>

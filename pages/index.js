@@ -16,10 +16,17 @@ export default function Home() {
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
+  
+    const getToken = async (result) => {
+      const token = await result.user.getIdToken();
+      console.log(token);
+      dispatch(setToken(token))
+    };
 
   const signIn = async () => {
     const result = await signInWithPopup(auth, provider);
     console.log(result.user);
+    getToken(result)
   };
 
   const signOutUser = async () => {
@@ -35,57 +42,7 @@ export default function Home() {
     return <div>Loading</div>;
   }
 
-  // const callApi = async () => {
-  //   const token = await user.getIdToken();
-  //   console.log(token);
-  //   const requestInfo = {
-  //     headers: {
-  //       Authorization: "Bearer " + token,
-  //     },
-  //   };
 
-  //   const res = getReq({
-  //     route: "http://localhost:8080/test",
-  //     headers: requestInfo,
-  //   });
-  //   console.log(res);
-
-  //   // const response = await fetch("http://localhost:8080/test", requestInfo);
-  //   // const responseBody = await response.json();
-  //   // console.log(responseBody)
-  // };
-
-  const getToken = async () => {
-    const token = await user.getIdToken();
-    console.log(token);
-    const requestInfo = {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    };
-
-    const res = getReq({
-      route: "http://localhost:8080/test",
-      headers: requestInfo,
-    });
-    console.log(res);
-
-    // const response = await fetch("http://localhost:8080/test", requestInfo);
-    // const responseBody = await response.json();
-    // console.log(responseBody)
-  };
-
-  /*
-  if (user) {
-    return (
-      <div>
-        <div>Signed In</div>
-        <div onClick={() => auth.signOut()}>Sign out</div>
-        <div onClick={() => getToken()}>Get token</div>
-        <SockConfig/>
-      </div>
-    );
-  }*/
 
   return (
     <div className="flex justify-center">

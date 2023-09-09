@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { currencyFormatter } from "@/lib/utils";
-import ReportPopup from "../Reports/ReportPopup";
+import ReportPopup from "../../pages/reports/ReportPopup";
 const Transaction = (props) => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
