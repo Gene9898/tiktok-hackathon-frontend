@@ -93,7 +93,7 @@ export default function Home() {
           ) : (
             <footer className="text-left">
               <button
-                className="rounded-full bg-gradient-to-r from-blue-400 via-indigo-500 to-rose-500"
+                className="p-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-500 to-rose-600"
                 onClick={signIn}
               >
                 <span className="log">Sign in with Google</span>

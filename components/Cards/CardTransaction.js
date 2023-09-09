@@ -68,37 +68,9 @@ const CardTransaction = (props) => {
               props.effect !== false && "animate-wiggle"
             }`}
           />
-          {selection === "none" && (
-            <section className="mt-10 flex flex-wrap w-[60%] mx-auto gap-8 justify-center">
-              <button
-                className="bg-rose-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
-                onClick={() => {
-                  setSelection("payment");
-                }}
-              >
-                Make Payment
-              </button>
-              <button
-                className="bg-zinc-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
-                onClick={() => {
-                  setSelection("txn");
-                }}
-              >
-                Transaction History
-              </button>
-            </section>
-          )}
-          {selection === "txn" && (
-            <section className=" mt-10 flex flex-col gap-4 bg-slate-500 w-[725px] mx-auto rounded-2xl p-6">
+          <section className=" mt-10 flex flex-col gap-4 bg-slate-800 w-[725px] mx-auto rounded-2xl p-6">
               <div className="flex flex-wrap">
-                <MdArrowBack
-                  size={48}
-                  className="hover:scale-125 cursor-pointer"
-                  onClick={() => {
-                    setSelection("none");
-                  }}
-                />
-                <h1 className="ml-auto">Transactions</h1>
+                <h1>Transactions</h1>
               </div>
               {transaction_details.map((txn, index) => (
                 <>
@@ -116,30 +88,7 @@ const CardTransaction = (props) => {
                 </>
               ))}
             </section>
-          )}
-          {selection === "payment" && (
-            <section className="flex flex-col mt-10 w-[725px] mx-auto">
-              <TransactionForm setSelection={setSelection} />
-              <button
-                className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
-                onClick={() => {
-                  let check = paymentFormValidation(payment_details);
-                  if (check) {
-                    dispatch(
-                      setAdditionalPaymentDetails({
-                        // cardId: props.card.cardId,
-                        cardId: props.card.cardNumber,
-                        dateOfBirth: props.card.dateOfBirth,
-                      })
-                    );
-                    document.getElementById("txn-form").reset();
-                  }
-                }}
-              >
-                Make Payment
-              </button>
-            </section>
-          )}
+          
         </>
       )}
     </div>

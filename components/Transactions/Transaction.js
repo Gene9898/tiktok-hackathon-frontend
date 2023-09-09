@@ -12,7 +12,7 @@ const Transaction = (props) => {
     NONE: "bg-green-500",
   };
   return (
-    <div className="flex flex-wrap items-center justify-between px-4 py-4 bg-slate-800 rounded-3xl w-[90%] ml-auto">
+    <div className="flex flex-wrap items-center justify-between px-4 py-4 bg-slate-700 rounded-3xl w-[100%] mx-auto">
       <div className="flex items-center gap-4 w-fit">
         <div
           className={`w-[8px] h-[8px] sm:w-[25px] sm:h-[25px] rounded-full ${
