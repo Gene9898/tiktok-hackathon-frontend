@@ -28,15 +28,18 @@ const Card = () => {
       // return card id in each obj
       const res = await getReq({
         // route: "http://localhost:8082/cards",
-        route: CARD_SERVICE + userId,
+        // route: CARD_SERVICE + userId,
+        route: "http://localhost:8080/account",
         headers: {Authorization: "Bearer " + token,},
       });
-      console.log(res);
+      console.log("checking",res);
       dispatch(setSavedCards(res));
     };
     fetchData();
   }, [dispatch]);
 
+
+  console.log("checking",filtered_saved_cards)
   return (
     <div className="w-full h-full flex flex-wrap">
       <div className="basis-1/2 h-full">

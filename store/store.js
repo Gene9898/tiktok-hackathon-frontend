@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { cardSlice } from "./slices/cardSlice";
-import authSlice from "./slices/authSlice";
+import {authSlice} from "./slices/authSlice";
 
 const store = () =>
   configureStore({

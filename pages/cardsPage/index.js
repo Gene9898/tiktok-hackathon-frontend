@@ -10,25 +10,31 @@ import CardForm from "@/components/Cards/CardForm";
 import { cardFormValidation, postReq, getReq } from "@/lib/utils";
 import MinimisedCard from "@/components/Cards/MinimisedCard";
 import { CARD_SERVICE } from "@/config/configs";
+import { selectUserId, selectToken } from "@/store/slices/authSlice";
 
 const Cards = () => {
   const dispatch = useDispatch();
   const card_detail = useSelector(selectCardRegisterDetails);
   const saved_cards = useSelector(selectSavedCards);
+  const userId = useSelector(selectUserId);
+  const token = useSelector(selectToken);
   const [isReported, setIsReported] = useState(false);
-  console.log(saved_cards);
   const fetchData = async () => {
     const res = await getReq({
       // TODO
-      route: "http://localhost:3001/api/getcarddetails",
-      headers: {},
+      route: CARD_SERVICE+userId,
+      headers: {
+        Authorization: "Bearer " + token,
+    },
     });
     console.log(res);
     dispatch(setSavedCards(res));
   };
 
   useEffect(() => {
+    console.log("userId ", userId)
     fetchData();
+    console.log("CHECKING ",saved_cards);
   }, []);
 
   const handleReport = () => {
