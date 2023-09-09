@@ -46,7 +46,7 @@ const Cards = () => {
   };
 
   const submitForm = async () => {
-    const check = cardFormValidation(card_detail);
+    const check = cardFormValidation(card_detail,saved_cards);
     console.log(check);
     if (check) {
       const res = await postReq({
@@ -58,6 +58,7 @@ const Cards = () => {
       console.log(res);
       alert("Card Successfully Saved!");
       handleClose(); // Close the popup after submitting
+      document.getElementById("card-form").reset();
       fetchData();
     }
   };

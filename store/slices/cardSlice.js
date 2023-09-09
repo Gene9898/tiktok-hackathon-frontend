@@ -4,7 +4,6 @@ import { HYDRATE } from "next-redux-wrapper";
 const initialState = {
   saved_cards: [],
   card_register_details: {},
-  card_transactions: [],
   payment_details: {},
   transaction_check: false,
   transaction_details: [],
@@ -24,7 +23,9 @@ export const cardSlice = createSlice({
       const id = action.payload.id;
       let val = action.payload.val;
       console.log(val);
-      if (id === "expirationDate") {
+      if (val === "") {
+        delete state.card_register_details[id];
+      } else if (id === "expirationDate") {
         state.card_register_details["expiryYear"] = val.split("-")[0];
         state.card_register_details["expiryMonth"] = val.split("-")[1];
       } else {
@@ -37,13 +38,15 @@ export const cardSlice = createSlice({
       console.log(state.card_register_details["cardNumber"]);
       console.log(state.card_register_details["bank"]);
     },
-    setCardTransactions(state, action) {
-      state.card_transactions = action.payload;
-    },
     setPaymentDetails(state, action) {
       const id = action.payload.id;
       let val = action.payload.val;
-      state.payment_details[id] = val;
+      console.log(id, val);
+      if (val.length === 0) {
+        delete state.payment_details[id];
+      } else {
+        state.payment_details[id] = val;
+      }
     },
     setAdditionalPaymentDetails(state, action) {
       const categoryType = [
@@ -278,7 +281,6 @@ export const cardSlice = createSlice({
 export const {
   setSavedCards,
   setCardRegistrationDetails,
-  setCardTransactions,
   setPaymentDetails,
   setAdditionalPaymentDetails,
   setTransactionCheck,
@@ -288,7 +290,6 @@ export const {
 export const selectSavedCards = (state) => state.cards.saved_cards;
 export const selectCardRegisterDetails = (state) =>
   state.cards.card_register_details;
-export const selectCardTransactions = (state) => state.cards.card_transactions;
 export const selectPaymentDetails = (state) => state.cards.payment_details;
 export const selectTransactionCheck = (state) => state.cards.transaction_check;
 export const selectTransactionDetails = (state) =>

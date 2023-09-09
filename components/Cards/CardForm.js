@@ -18,7 +18,10 @@ const CardForm = () => {
   }, [card_details.cardNumber, dispatch]);
 
   return (
-    <form className="flex flex-wrap bg-rose-600 rounded-xl p-4 justify-center font-mono text-left">
+    <form
+      className="flex flex-wrap bg-rose-600 rounded-xl p-4 justify-center font-mono text-left"
+      id="card-form"
+    >
       <CardInput
         label="Card Number"
         type="tel"
@@ -61,6 +64,7 @@ const CardForm = () => {
           divclass="sm:w-1/2"
           value={card_details.cvc}
           setFunc={setCardRegistrationDetails}
+          maxLength={3}
         />
       </div>
     </form>
