@@ -4,11 +4,14 @@ export default function Navbar() {
   return (
     <header className="flexbox">
       <div className="flex items-center justify-between">
-        <h1>FraudNow</h1>
+        <div className="flex items-center">
+        <img className="image ml-1" src="./logo.png"/>
+        <h2>FraudNow</h2>
+        </div>
         <div className="flex items-center sm:gap-2">
           <Link href="/">Home</Link>
           <Link href="/transactions">Transactions</Link>
-          <Link href="/cardsPage">Cards</Link>
+          <Link href="/option">Payment</Link>
           <Link href="/reports">Reports</Link>
         </div>
       </div>

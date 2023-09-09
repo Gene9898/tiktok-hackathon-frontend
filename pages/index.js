@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { initFirebase } from "@/config/firebase";
+import Image from "next/image";
 import {
     getAuth,
     signInWithPopup,
@@ -40,78 +41,67 @@ export default function Home() {
         return <div>Loading</div>;
     }
 
-    const callApi = async () => {
-        const token = await user.getIdToken();
-        console.log(token);
-        const requestInfo = {
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-        };
+    // const callApi = async () => {
+    //     const token = await user.getIdToken();
+    //     console.log(token);
+    //     const requestInfo = {
+    //         headers: {
+    //             Authorization: "Bearer " + token,
+    //         },
+    //     };
 
-        const res = getReq({
-            route: "http://localhost:8081/",
-            headers: requestInfo,
-        });
-        console.log(res);
-    };
+    //     const res = getReq({
+    //         route: "http://localhost:8081/",
+    //         headers: requestInfo,
+    //     });
+    //     console.log(res);
+    // };
 
-    return (
-        <header className="sm:pt-0 pt-4">
-            <section className="max-w-3xl mx-auto mb-4 sm:mb-1">
-                <div className="text-center bg-rose-600 mb-6 sm:mb-12 sm:mt-8 rounded-xl py-4 sm:py-2 mx-2 sm:mx-1">
-                    <h2>Manage Your Finances with Ease</h2>
-                    <p>
-                        Simplify your financial life with our finance website.
-                    </p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 sm:gap-8 gap-6">
-                    <div className="panel">
-                        <h3>Safety Ensured</h3>
-                        <p>
-                            Our website can detect and prevent fradulant
-                            transactions.
-                        </p>
-                    </div>
-                    <div className="panel">
-                        <h3>Track Your Expenses</h3>
-                        <p>
-                            Monitor your spending habits and keep an close eye
-                            on your financial transactions.
-                        </p>
-                    </div>
-                    <div className="panel">
-                        <h3>Secure & Private</h3>
-                        <p>
-                            Your financial data is encrypted and kept
-                            confidential, ensuring your peace of mind.
-                        </p>
-                    </div>
-                    <div className="panel">
-                        <h3>Convenience</h3>
-                        <p>Monitor your finances at a click of a button.</p>
-                    </div>
-                </div>
-            </section>
-
-            {user ? (
-                <footer className="text-center mt-6 sm:mt-12">
-                    <p>Welcome, {user.displayName}!</p>
-                    <button onClick={signOutUser} className="log">
-                        Sign Out
-                    </button>
-                </footer>
-            ) : (
-                <footer className="text-center sm:mt-12">
-                    <p>
-                        Get started today and take control of your financial
-                        future.
-                    </p>
-                    <button onClick={signIn} className="log">
-                        Sign In with Google
-                    </button>
-                </footer>
-            )}
-        </header>
-    );
+  return (
+    <header className="sm:pt-0 pt-4 m-3 h-full">
+      <section className="max-w-4xl mx-auto flex flex-col items-center">
+        <Image
+          width = {96}
+          height = {96}
+          className="w-full"
+          src="/tiktok-logo.gif"
+          alt="Tiktok Logo GIF - Tiktok Logo Glitch GIFs"
+        />
+      </section>
+      <section>
+        <div className="max-w-4xl mx-auto text-left py-8">
+          <h1>Secure Banking</h1>
+          <i>
+            <h3 className="mt-2 mb-1 font-semibold">
+              Protect your finances and monitor your transactions using
+              FraudNow.
+            </h3>
+            <h3 className="sm:mb-6 mb-4 font-semibold">
+              Take control of your financial future!
+            </h3>
+          </i>
+          {user ? (
+            <footer className="text-left">
+              <p className="mb-2">Welcome, {user.displayName}!</p>
+              <button
+                className="p-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-500 to-rose-500"
+                onClick={signOutUser}
+              >
+                <span className="log">Sign Out</span>
+              </button>
+            </footer>
+          ) : (
+            <footer className="text-left">
+              <button
+                className="p-1 rounded-full bg-gradient-to-r from-blue-400 via-indigo-500 to-rose-600"
+                onClick={signIn}
+              >
+                <span className="log">Sign in with Google</span>
+              </button>
+            </footer>
+          )}
+        </div>
+      </section>
+    </header>
+  );
 }

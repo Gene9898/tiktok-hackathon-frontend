@@ -130,83 +130,6 @@ export const cardSlice = createSlice({
       state.transaction_check = action.payload;
     },
     setTransactionDetails(state, action) {
-      const transactions = [
-        {
-          transactionId: "64fb2941d1ecde2278e668fb",
-          cardId: "test",
-          amount: 4,
-          transactionDateTime: "2023-09-10T11:06:30.836",
-          category: "travel",
-          lat: 1.3352,
-          lon: 12.345,
-          merch_lat: 12.345,
-          merch_lon: 44.423,
-          dateOfBirth: "1998-11-12",
-          name: "Gene",
-          number: "92174623",
-          risk: "NONE",
-        },
-        {
-          transactionId: "64fb2941d1ecde2278e668fb",
-          cardId: "test",
-          amount: 5,
-          transactionDateTime: "2023-09-10T12:06:30.836",
-          category: "travel",
-          lat: 1.3352,
-          lon: 12.345,
-          merch_lat: 12.345,
-          merch_lon: 44.423,
-          dateOfBirth: "1998-11-12",
-          name: "Jon",
-          number: "92174623",
-          risk: "HIGH",
-        },
-        {
-          transactionId: "64fb2941d1ecde2278e668fb",
-          cardId: "test",
-          amount: 1,
-          transactionDateTime: "2023-09-08T11:06:30.836",
-          category: "travel",
-          lat: 1.3352,
-          lon: 12.345,
-          merch_lat: 12.345,
-          merch_lon: 44.423,
-          dateOfBirth: "1998-11-12",
-          name: "Yida",
-          number: "92174623",
-          risk: "NONE",
-        },
-        {
-          transactionId: "64fb2941d1ecde2278e668fb",
-          cardId: "test",
-          amount: 2,
-          transactionDateTime: "2023-09-08T12:06:30.836",
-          category: "travel",
-          lat: 1.3352,
-          lon: 12.345,
-          merch_lat: 12.345,
-          merch_lon: 44.423,
-          dateOfBirth: "1998-11-12",
-          name: "Jeremy",
-          number: "92174623",
-          risk: "HIGH",
-        },
-        {
-          transactionId: "64fb2941d1ecde2278e668fb",
-          cardId: "test",
-          amount: 3,
-          transactionDateTime: "2023-09-09T13:06:30.836",
-          category: "travel",
-          lat: 1.3352,
-          lon: 12.345,
-          merch_lat: 12.345,
-          merch_lon: 44.423,
-          dateOfBirth: "1998-11-12",
-          name: "Ben",
-          number: "92174623",
-          risk: "HIGH",
-        },
-      ];
       function formatDate(inputDate) {
         // Create a Date object from the input string
         const date = new Date(inputDate);
@@ -245,6 +168,7 @@ export const cardSlice = createSlice({
 
         return formattedDate;
       }
+      const transactions = action.payload;
       transactions.sort(
         (t1, t2) =>
           new Date(t2["transactionDateTime"]) -

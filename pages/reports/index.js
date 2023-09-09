@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SockJS from "sockjs-client";
 import Stomp from "stompjs";
 import { useSelector } from "react-redux";
+import { REPORT_SERVICE } from '@/config/configs';
 // import { getToken } from "@/store/slices/tokenSlice";
 
 let stompClient;
@@ -35,7 +36,7 @@ const Reports = () => {
   const token = useSelector(getToken);
 
   const connect = async () => {
-    var sock = new SockJS("http://localhost:8082/ws?token=" + token);
+    var sock = new SockJS(REPORT_SERVICE + "/ws?token=" + token);
     stompClient = Stomp.over(sock);
     sock.onopen = function () {
       console.log("open");

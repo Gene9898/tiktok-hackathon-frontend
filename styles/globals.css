@@ -4,12 +4,10 @@
 
 @layer base {
   html {
-    @apply h-full;
+    @apply overflow-auto min-h-full min-w-full;
   }
   body {
-    @apply bg-black text-white min-h-full m-2;
-    /*@apply bg-white;
-    @apply dark:bg-neutral-700;*/
+    @apply bg-black text-white min-h-full bg-gradient-to-t from-rose-500 to-black;
   }
   h1 {
     @apply text-4xl;
@@ -63,7 +61,7 @@
   }
 
   .flexbox {
-    @apply container max-w-4xl px-4 py-4 mx-auto pb-8 text-lg;
+    @apply container max-w-screen-2xl px-4 py-4 mx-auto pb-8 text-lg;
   }
 
   .panel{
@@ -71,7 +69,11 @@
   }
 
   .log {
-    @apply mt-4 inline-block bg-rose-600 hover:bg-rose-500 text-white py-2 px-6 rounded-lg text-base sm:text-lg font-semibold transition duration-300 ease-in-out mb-8;
+    @apply block text-black px-4 py-2 font-semibold rounded-full bg-white hover:bg-gray-400 text-base sm:text-lg text-sm font-semibold transition duration-300 ease-in-out;
+  }
+
+  .image{
+    @apply object-scale-down h-10 mr-4;
   }
 }
 
@@ -122,11 +124,15 @@
   }
 
   :link{
-    @apply px-2 py-1 text-white capitalize rounded-xl;
+    @apply px-2 py-1 text-white capitalize hover:bg-rose-500 hover:border-rose-500 hover:scale-100 rounded-xl;
   }
 
   .report {
     @apply text-white capitalize hover:text-red-600 text-sm;
+  }
+
+  .image{
+    @apply object-scale-down h-6 mr-2;
   }
 }
 
@@ -148,8 +154,10 @@
   }
   
   .flexbox{
-    @apply container max-w-4xl px-0 py-4 mx-auto pb-2 text-xs mx-2 pr-2;
+    @apply container max-w-4xl px-0 py-4 mx-auto pb-2 text-xs;
   }
+
+  
 }
 
 @media (max-width: 350px) {
@@ -177,8 +185,11 @@
     @apply text-white capitalize hover:text-red-600 text-xs;
   }
 
+  .image{
+    @apply object-scale-down h-3 mr-1;
+  }
 
   :link{
-    @apply px-1 py-1 mx-1 text-white capitalize rounded-xl;
+    @apply px-1 py-1 text-white capitalize hover:bg-rose-500 hover:border-rose-500 hover:scale-100 rounded-xl;
   }
 }
