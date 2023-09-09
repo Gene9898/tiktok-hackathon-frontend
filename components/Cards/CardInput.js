@@ -5,7 +5,10 @@ const CardInput = (props) => {
   const dispatch = useDispatch();
   return (
     <div className={`flex flex-col flex-wrap p-2 ${props.divclass} `}>
-      <label htmlFor={props.id} className={`text-xs sm:text-sm md:text-lg lg:text-xl ${props.labelclass}`}>
+      <label
+        htmlFor={props.id}
+        className={`text-xs sm:text-sm md:text-lg lg:text-xl ${props.labelclass}`}
+      >
         {props.label}
       </label>
       {props.id === "cardNumber" && (
@@ -35,6 +38,7 @@ const CardInput = (props) => {
           value={props.value}
           type={props.type}
           id={props.id}
+          maxLength={props.maxLength}
           className={`mr-auto rounded-md text-black text-xs xs:text-base sm:text-lg md:text-xl lg:text-2xl w-full h-fit mt-2 p-2 ${props.inputclass}`}
           onChange={(event) => {
             dispatch(

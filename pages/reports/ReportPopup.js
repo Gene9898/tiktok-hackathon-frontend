@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-export default function ReportPopup({ transactionId, title, amount, onClose }) {
+export default function ReportPopup({ transactionId, title, amount, bank, onClose }) {
   const [isReported, setIsReported] = useState(false);
 
-  const handleReport = () => {
-    setIsReported(true);
-  };
+  
+  const [message, setMessage] = useState("You server message here.");
+
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -31,8 +31,9 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                 <h3 className='sm:text-2xl text-base font-semibold'>Transaction Details</h3>
                 <div className="mt-2 mb-6">
                 <p>Transaction ID: { transactionId }</p>
+                <p>Title: { title }</p>
+                <p>Bank: { bank }</p>
                 <p>Amount: ${ amount }</p>
-                <p>Description: { title }</p>
                 <p>Date: </p>
               </div>
                 <p>
@@ -42,14 +43,27 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                   <textarea
                     className="w-full h-24 px-3 py-2 sm:text-lg text-sm border rounded-lg"
                     placeholder="Enter your report details..."
+                    onChange={(e) => setDescription(e.target.value)}
                   />
-                  <div className="mt-4 sm:space-x-4 space-x-2">
-                  <button
-                    className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
-                    onClick={handleReport}
-                  >
-                    Submit Report
-                  </button>
+                  <div className="flex mt-4 sm:space-x-4 space-x-2">
+            <button
+            className="bg-blue-500 hover:bg-blue-400 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
+                onClick={() => {
+                    setIsReported(true);
+                    console.log(token)
+                    stompClient.send(
+                        "/app/report",
+                        {},
+                        JSON.stringify({
+                            token: token,
+                            bank: bank,
+                            description: description,
+                        })
+                    );
+                }}
+            >
+                Submit Report
+            </button>
                   <button
                     className="bg-rose-600 hover:bg-rose-500 text-white py-2 px-4 rounded-lg sm:text-lg text-xs font-semibold transition duration-300 ease-in-out"
                     onClick={onClose}
@@ -57,8 +71,8 @@ export default function ReportPopup({ transactionId, title, amount, onClose }) {
                     Cancel
                   </button>
                   </div>
+                  </div>
                 </div>
-              </div>
             )}
         </div>
         </div>

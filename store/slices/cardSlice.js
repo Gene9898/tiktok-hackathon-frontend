@@ -4,9 +4,10 @@ import { HYDRATE } from "next-redux-wrapper";
 const initialState = {
   saved_cards: [],
   card_register_details: {},
-  card_transactions: [],
   payment_details: {},
   transaction_check: false,
+  transaction_details: [],
+  filtered_saved_cards: [],
 };
 
 export const cardSlice = createSlice({
@@ -16,22 +17,36 @@ export const cardSlice = createSlice({
     setSavedCards(state, action) {
       console.log(action.payload);
       state.saved_cards = action.payload;
+      state.filtered_saved_cards = action.payload;
     },
     setCardRegistrationDetails(state, action) {
       const id = action.payload.id;
       let val = action.payload.val;
-
-      state.card_register_details[id] = val;
+      console.log(val);
+      if (val === "") {
+        delete state.card_register_details[id];
+      } else if (id === "expirationDate") {
+        state.card_register_details["expiryYear"] = val.split("-")[0];
+        state.card_register_details["expiryMonth"] = val.split("-")[1];
+      } else {
+        state.card_register_details[id] = val;
+      }
+      console.log(
+        state.card_register_details["expiryMonth"],
+        state.card_register_details["expiryYear"]
+      );
       console.log(state.card_register_details["cardNumber"]);
       console.log(state.card_register_details["bank"]);
-    },
-    setCardTransactions(state, action) {
-      state.card_transactions = action.payload;
     },
     setPaymentDetails(state, action) {
       const id = action.payload.id;
       let val = action.payload.val;
-      state.payment_details[id] = val;
+      console.log(id, val);
+      if (val.length === 0) {
+        delete state.payment_details[id];
+      } else {
+        state.payment_details[id] = val;
+      }
     },
     setAdditionalPaymentDetails(state, action) {
       const categoryType = [
@@ -65,7 +80,8 @@ export const cardSlice = createSlice({
         lat: [1.3, 1.4],
         long: [103.7, 103.9],
       };
-      const cardNumber = action.payload.cardNumber;
+      const cardId = action.payload.cardId;
+      const dateOfBirth = action.payload.dateOfBirth;
       const randomCountry = Math.random();
       const sgProb = 0.8;
       const otherProb = (1 - sgProb) / 2;
@@ -105,12 +121,151 @@ export const cardSlice = createSlice({
       ).toFixed(6);
       state.payment_details["category"] =
         categoryType[Math.floor(Math.random() * categoryType.length)];
-      state.payment_details["cardId"] = cardNumber;
+      state.payment_details["cardId"] = cardId;
       state.payment_details["dateTime"] = new Date();
-      state.transaction_count++;
+      state.payment_details["dateOfBirth"] = dateOfBirth;
+      state.transaction_check = true;
     },
     setTransactionCheck(state, action) {
       state.transaction_check = action.payload;
+    },
+    setTransactionDetails(state, action) {
+      const transactions = [
+        {
+          transactionId: "64fb2941d1ecde2278e668fb",
+          cardId: "test",
+          amount: 4,
+          transactionDateTime: "2023-09-10T11:06:30.836",
+          category: "travel",
+          lat: 1.3352,
+          lon: 12.345,
+          merch_lat: 12.345,
+          merch_lon: 44.423,
+          dateOfBirth: "1998-11-12",
+          name: "Gene",
+          number: "92174623",
+          risk: "NONE",
+        },
+        {
+          transactionId: "64fb2941d1ecde2278e668fb",
+          cardId: "test",
+          amount: 5,
+          transactionDateTime: "2023-09-10T12:06:30.836",
+          category: "travel",
+          lat: 1.3352,
+          lon: 12.345,
+          merch_lat: 12.345,
+          merch_lon: 44.423,
+          dateOfBirth: "1998-11-12",
+          name: "Jon",
+          number: "92174623",
+          risk: "HIGH",
+        },
+        {
+          transactionId: "64fb2941d1ecde2278e668fb",
+          cardId: "test",
+          amount: 1,
+          transactionDateTime: "2023-09-08T11:06:30.836",
+          category: "travel",
+          lat: 1.3352,
+          lon: 12.345,
+          merch_lat: 12.345,
+          merch_lon: 44.423,
+          dateOfBirth: "1998-11-12",
+          name: "Yida",
+          number: "92174623",
+          risk: "NONE",
+        },
+        {
+          transactionId: "64fb2941d1ecde2278e668fb",
+          cardId: "test",
+          amount: 2,
+          transactionDateTime: "2023-09-08T12:06:30.836",
+          category: "travel",
+          lat: 1.3352,
+          lon: 12.345,
+          merch_lat: 12.345,
+          merch_lon: 44.423,
+          dateOfBirth: "1998-11-12",
+          name: "Jeremy",
+          number: "92174623",
+          risk: "HIGH",
+        },
+        {
+          transactionId: "64fb2941d1ecde2278e668fb",
+          cardId: "test",
+          amount: 3,
+          transactionDateTime: "2023-09-09T13:06:30.836",
+          category: "travel",
+          lat: 1.3352,
+          lon: 12.345,
+          merch_lat: 12.345,
+          merch_lon: 44.423,
+          dateOfBirth: "1998-11-12",
+          name: "Ben",
+          number: "92174623",
+          risk: "HIGH",
+        },
+      ];
+      function formatDate(inputDate) {
+        // Create a Date object from the input string
+        const date = new Date(inputDate);
+
+        // Get the day, month, and year
+        const dayOfMonth = date.getDate();
+        const monthName = new Intl.DateTimeFormat("en-US", {
+          month: "long",
+        }).format(date);
+        const yearValue = date.getFullYear();
+
+        // Add the appropriate suffix to the day
+        let dayWithSuffix;
+        if (dayOfMonth >= 11 && dayOfMonth <= 13) {
+          dayWithSuffix = dayOfMonth + "th";
+        } else {
+          const lastDigit = dayOfMonth % 10;
+          switch (lastDigit) {
+            case 1:
+              dayWithSuffix = dayOfMonth + "st";
+              break;
+            case 2:
+              dayWithSuffix = dayOfMonth + "nd";
+              break;
+            case 3:
+              dayWithSuffix = dayOfMonth + "rd";
+              break;
+            default:
+              dayWithSuffix = dayOfMonth + "th";
+              break;
+          }
+        }
+
+        // Combine the formatted parts
+        const formattedDate = `${dayWithSuffix} ${monthName} ${yearValue}`;
+
+        return formattedDate;
+      }
+      transactions.sort(
+        (t1, t2) =>
+          new Date(t2["transactionDateTime"]) -
+          new Date(t1["transactionDateTime"])
+      );
+      transactions.forEach((txn) => {
+        txn["transactionDateTime"] = formatDate(
+          new Date(txn["transactionDateTime"])
+        );
+      });
+      console.log(transactions);
+      state.transaction_details = transactions;
+    },
+    filterSavedCards(state, action) {
+      const cardDisplay = action.payload;
+      state.filtered_saved_cards = state.saved_cards;
+      console.log(state.filtered_saved_cards.length);
+      state.filtered_saved_cards = state.filtered_saved_cards.filter(
+        (card) => card["cardNumber"] !== cardDisplay["cardNumber"]
+      );
+      console.log(state.filtered_saved_cards.length);
     },
     extraReducers: {
       [HYDRATE]: (state, action) => {
@@ -126,15 +281,20 @@ export const cardSlice = createSlice({
 export const {
   setSavedCards,
   setCardRegistrationDetails,
-  setCardTransactions,
   setPaymentDetails,
   setAdditionalPaymentDetails,
+  setTransactionCheck,
+  setTransactionDetails,
+  filterSavedCards,
 } = cardSlice.actions;
 export const selectSavedCards = (state) => state.cards.saved_cards;
 export const selectCardRegisterDetails = (state) =>
   state.cards.card_register_details;
-export const selectCardTransactions = (state) => state.cards.card_transactions;
 export const selectPaymentDetails = (state) => state.cards.payment_details;
 export const selectTransactionCheck = (state) => state.cards.transaction_check;
+export const selectTransactionDetails = (state) =>
+  state.cards.transaction_details;
+export const selectFilterSavedCards = (state) =>
+  state.cards.filtered_saved_cards;
 
 export default cardSlice.reducer;
