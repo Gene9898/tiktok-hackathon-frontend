@@ -1,38 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TikTok Hackathon Challenge 2023 Project Readme - FraudNow
+
+Welcome to our Tiktok Hackathon Challenge 2023 project! Our chosen problem statement is on Reshaping Payments. 
+
+This README provides an overview of our project (**FraudNow**), its components, and how to get started.
+
+## Project Overview
+
+Our project is a comprehensive solution for fraud detection in financial transactions. We have developed a web application with a user-friendly front-end and a robust back-end that incorporates machine learning for fraud detection. Here are the key components:
+
+- **Frontend**:
+  - Built with **Next.js** for a fast and responsive user interface.
+  - State management is handled with **Redux** for efficient data flow.
+  - We've used **Tailwind CSS** for a sleek and modern design.
+
+- **Backend**:
+  - Developed using **Spring Boot**, a powerful and scalable Java framework.
+  - Data storage is managed using **MongoDB**, a NoSQL database, for flexibility and scalability.
+
+- **Authentication**:
+  - User authentication is handled by **Firebase Auth**, providing secure and easy-to-use authentication methods.
+
+- **Machine Learning Model**:
+  - Our project incorporates an AI model for **fraud detection**, enhancing the security of financial transactions.
+  - The AI model is containerized using **Docker** for easy deployment and scalability.
+
+### Architecture Diagram
+
+![architecture diagram](images/architecture-diagram.png)
+
+## Repositories
+- frontend: https://github.com/Gene9898/tiktok-hackathon-frontend
+- backend: https://github.com/luayida99/tiktok-hackathon-backend
+- ml-model: https://github.com/benedictchuajj/tiktok-fraud-detection
 
 ## Getting Started
 
-First, run the development server:
+To get started with our project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Make sure you have the following prerequisites installed on your system:
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- Node.js and npm (for the front-end)
+- Java and Spring Boot (for the back-end)
+- MongoDB (for data storage)
+- Firebase account (for authentication)
+- Python and necessary libraries (for machine learning)
+- Docker (for containerization)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Setup
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Follow the instructions in each repository to setup the project.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Accessing the Application
 
-## Learn More
+Once everything is set up and running, you can access the application in your web browser. By default, it should be available at `http://localhost:3000`.
 
-To learn more about Next.js, take a look at the following resources:
+## Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Our application allows users to:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- Sign up and log in using Firebase Auth.
+- Perform financial transactions securely.
+- Benefit from AI-powered fraud detection.
+- Visualize their transaction history.
 
-## Deploy on Vercel
+Feel free to explore the various features and functionalities of our application to understand how we've implemented fraud detection and ensured secure financial transactions.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributors
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Eugene Lum](https://github.com/Gene9898) - Frontend development
+- [Jeremy Lee](https://github.com/Jermy-Lee) - Frontend development
+- [Jonathan Lee](https://github.com/jonlee1923) - Backend development
+- [Lua Yi Da](https://github.com/luayida99) - Backend development
+- [Benedict Chua](https://github.com/benedictchuajj) - Machine Learning and AI
+
+## Acknowledgments
+
+We would like to express our gratitude to the organizers of this hackathon for providing us with the opportunity to work on this project. We hope our solution demonstrates the potential for enhanced security in financial transactions through the integration of machine learning and modern web technologies.
