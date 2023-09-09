@@ -31,8 +31,8 @@ const Card = () => {
         // route: CARD_SERVICE + userId,
         route: "http://localhost:8080/account",
         headers: {Authorization: "Bearer " + token,},
-        route: "http://localhost:3000/api/getcarddetails",
-        headers: {},
+        // route: "http://localhost:3000/api/getcarddetails",
+        // headers: {},
       });
       console.log("checking",res);
       dispatch(setSavedCards(res));
@@ -69,8 +69,9 @@ const Card = () => {
                   }`}
                 />
               )}
-              {index !== filtered_saved_cards.length - 1 && (
-                <MinimisedTxnCard
+              {/* pt-5 hover:pt-0 hover:pb-10 */}
+              {index !== saved_cards.length - 1 && (
+                <MinimisedCard
                   card={card}
                   divclass={`absolute ${
                     index !== 0 && "border-t-8"
