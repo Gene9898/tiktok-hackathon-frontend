@@ -22,7 +22,7 @@ const Cards = () => {
   const fetchData = async () => {
     const res = await getReq({
       // TODO
-      route: CARD_SERVICE+userId,
+      route: CARD_SERVICE + "/" + userId,
       headers: {
         Authorization: "Bearer " + token,
     },

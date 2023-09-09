@@ -29,7 +29,7 @@ const CardTransaction = (props) => {
     const fetchData = async () => {
       // TODO needa to get card id from redux stored cards
       const res = await getReq({
-        route: CARD_SERVICE + props.card.cardId,
+        route: CARD_SERVICE + "/" + props.card.cardId,
         headers:  {Authorization: "Bearer " + token}
       });
       console.log(res);
