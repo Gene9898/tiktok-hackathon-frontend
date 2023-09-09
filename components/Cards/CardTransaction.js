@@ -91,23 +91,23 @@ const CardTransaction = (props) => {
             </section>
           )} */}
           {/* {selection === "txn" && ( */}
-          <section className="mt-10 flex flex-col gap-4 bg-slate-500 w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 rounded-2xl p-6">
+          <section className="mt-10 flex flex-col gap-4 bg-slate-900 w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 rounded-2xl p-6">
             <div className="flex flex-wrap">
-              <MdArrowBack
+              {/* <MdArrowBack
                 size={48}
                 className="hover:scale-125 cursor-pointer"
                 onClick={() => {
                   setSelection("none");
                 }}
-              />
-              <h2 className="ml-auto">Transactions</h2>
+              /> */}
+              <h2>Transactions</h2>
             </div>
             {transaction_details.map((txn, index) => (
               <>
                 {(index === 0 ||
                   transaction_details[index - 1]["transactionDateTime"] !==
                     transaction_details[index]["transactionDateTime"]) && (
-                  <h3 className="ml-16">{txn["transactionDateTime"]}</h3>
+                  <h4>{txn["transactionDateTime"]}</h4>
                 )}
                 <Transaction
                   key={"transaction-" + index}
