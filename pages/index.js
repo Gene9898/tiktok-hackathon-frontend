@@ -41,21 +41,21 @@ export default function Home() {
         return <div>Loading</div>;
     }
 
-    const callApi = async () => {
-        const token = await user.getIdToken();
-        console.log(token);
-        const requestInfo = {
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-        };
+    // const callApi = async () => {
+    //     const token = await user.getIdToken();
+    //     console.log(token);
+    //     const requestInfo = {
+    //         headers: {
+    //             Authorization: "Bearer " + token,
+    //         },
+    //     };
 
-        const res = getReq({
-            route: "http://localhost:8081/",
-            headers: requestInfo,
-        });
-        console.log(res);
-    };
+    //     const res = getReq({
+    //         route: "http://localhost:8081/",
+    //         headers: requestInfo,
+    //     });
+    //     console.log(res);
+    // };
 
   return (
     <header className="sm:pt-0 pt-4 m-3 h-full">

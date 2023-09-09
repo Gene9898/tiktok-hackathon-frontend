@@ -11,6 +11,7 @@ import MinimisedRegisterCard from "@/components/Cards/MinimisedRegisterCard";
 import CardRegisterDisplay from "@/components/Cards/CardRegisterDisplay";
 import { CARD_SERVICE } from "@/config/configs";
 import { selectUserId, selectToken } from "@/store/slices/authSlice";
+import { useRouter } from "next/router";
 
 
 const Option = () => {

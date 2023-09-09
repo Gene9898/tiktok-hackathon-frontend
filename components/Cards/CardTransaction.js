@@ -27,15 +27,15 @@ const CardTransaction = (props) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // TODO needa to get card id from redux stored cards
+      // TODO needa get card id from redux stored cards
       const res = await getReq({
         route: CARD_SERVICE + props.card.cardId,
-        headers:  {Authorization: "Bearer " + token}
+        headers:  {}
       });
       console.log(res);
       dispatch(setCardTransactions(res));
     };
-    // fetchData();
+    fetchData();
     dispatch(setTransactionDetails());
   }, [dispatch, props.card.cardId]);
 
@@ -44,7 +44,6 @@ const CardTransaction = (props) => {
       const res = await postReq({
         //TODO post with the card in the tx obj
         route: TX_SERVICE,
-        // route:"http://localhost:8082/transactions",
         body: payment_details,
         headers: { "Content-Type": "application/json" },
       });

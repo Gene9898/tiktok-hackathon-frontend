@@ -11,7 +11,7 @@ import CardTxnDisplay from "./CardTxnDisplay";
 import MinimisedTxnCard from "./MinimisedTxnCard";
 import CardTransaction from "./CardTransaction";
 import { CARD_SERVICE } from "@/config/configs";
-import { selectUserId } from "@/store/slices/authSlice";
+import { selectUserId, selectToken } from "@/store/slices/authSlice";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -27,17 +27,17 @@ const Card = () => {
       // TODO card need to send user id
       // return card id in each obj
       const res = await getReq({
-        // route: "http://localhost:8082/cards",
-        // route: CARD_SERVICE + userId,
-        route: "http://localhost:8080/account",
+
+        route: CARD_SERVICE+userId,
+        // route: "http://localhost:8081/cards/" + userId,
         headers: {Authorization: "Bearer " + token,},
-        // route: "http://localhost:3000/api/getcarddetails",
-        // headers: {},
+
       });
-      console.log("checking",res);
+      console.log("checking ",res);
       dispatch(setSavedCards(res));
     };
     fetchData();
+    console.log("check" ,filtered_saved_cards)
   }, [dispatch]);
 
 
@@ -71,7 +71,7 @@ const Card = () => {
               )}
               {/* pt-5 hover:pt-0 hover:pb-10 */}
               {index !== saved_cards.length - 1 && (
-                <MinimisedCard
+                <MinimisedTxnCard
                   card={card}
                   divclass={`absolute ${
                     index !== 0 && "border-t-8"

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
 export default function ReportPopup({ transactionId, title, amount, bank, onClose }) {
   const [isReported, setIsReported] = useState(false);
-
-  
+  const [description, setDescription] = useState("");
   const [message, setMessage] = useState("You server message here.");
 
+  
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">

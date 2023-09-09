@@ -9,16 +9,19 @@ import CardForm from "@/components/Cards/CardForm";
 import { cardFormValidation, postReq, getReq } from "@/lib/utils";
 import MinimisedRegisterCard from "@/components/Cards/MinimisedRegisterCard";
 import CardRegisterDisplay from "@/components/Cards/CardRegisterDisplay";
+import { CARD_SERVICE, TX_SERVICE } from "@/config/configs";
+import { selectUserId } from "@/store/slices/authSlice";
 
 const Cards = () => {
   const dispatch = useDispatch();
   const card_detail = useSelector(selectCardRegisterDetails);
   const saved_cards = useSelector(selectSavedCards);
   const [isReported, setIsReported] = useState(false);
+  const userId = useSelector(selectUserId);
 
   const fetchData = async () => {
     const res = await getReq({
-      route: "http://localhost:3000/api/getcarddetails",
+      route: CARD_SERVICE+ userId,
       headers: {},
     });
     console.log(res);
@@ -42,7 +45,8 @@ const Cards = () => {
     console.log(check);
     if (check) {
       const res = await postReq({
-        route: "http://localhost:3000/api/postcarddetails",
+        // route: "http://localhost:3000/api/postcarddetails",
+        route: CARD_SERVICE,
         body: card_detail,
         headers: { "Content-Type": "application/json" },
       });
