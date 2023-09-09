@@ -16,7 +16,7 @@ import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
 import CardForm from "./CardForm";
 import TransactionForm from "../Transactions/TransactionForm";
-import { TX_SERVICE } from "@/config/configs";
+import { TX_SERVICE, CARD_SERVICE} from "@/config/configs";
 
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ const CardTransaction = (props) => {
     const fetchData = async () => {
       // TODO needa get card id from redux stored cards
       const res = await getReq({
-        route: CARD_SERVICE + props.card.cardId,
+        route: TX_SERVICE + props.card.cardId,
         headers:  {}
       });
       console.log(res);
