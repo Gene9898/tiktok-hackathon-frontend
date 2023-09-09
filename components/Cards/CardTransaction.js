@@ -62,7 +62,7 @@ const CardTransaction = (props) => {
           <CardTxnDisplay
             form={false}
             card={props.card}
-            divclass={`sm:w-[75%] w-3/5 md:mx-0 sm:mx-0 ${
+            divclass={`w-[75%] ml-auto lg:ml-auto md:mx-0 sm:mx-0 ${
               props.effect !== false && "animate-wiggle"
             }`}
           />
