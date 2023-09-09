@@ -2,56 +2,60 @@ import React, { useEffect, useState } from "react";
 import { initFirebase } from "@/config/firebase";
 import Image from "next/image";
 import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signOut,
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    signOut,
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getReq } from "@/lib/utils";
 import { useDispatch, useSelector } from "react-redux";
+import { login,logout } from "@/store/slices/authSlice";
 
 export default function Home() {
-  const dispatch = useDispatch();
-  const app = initFirebase();
-  console.log(app);
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
+    const dispatch = useDispatch();
+    const app = initFirebase();
+    console.log(app);
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    const [user, loading] = useAuthState(auth);
 
-  const signIn = async () => {
-    const result = await signInWithPopup(auth, provider);
-    console.log(result.user);
-  };
-
-  const signOutUser = async () => {
-    try {
-      await signOut(auth);
-      console.log("User signed out");
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  };
-
-  if (loading) {
-    return <div>Loading</div>;
-  }
-
-  const callApi = async () => {
-    const token = await user.getIdToken();
-    console.log(token);
-    const requestInfo = {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+    const signIn = async () => {
+        const result = await signInWithPopup(auth, provider);
+        const token = await result.user.getIdToken();
+        console.log(result.user.uid, token)
+        dispatch(login({userId: result.user.uid, token:token}))
     };
 
-    const res = getReq({
-      route: "http://localhost:8080/test",
-      headers: requestInfo,
-    });
-    console.log(res);
-  };
+    const signOutUser = async () => {
+        try {
+            await signOut(auth);
+            dispatch(logout())
+            console.log("User signed out");
+        } catch (error) {
+            console.error("Error signing out:", error);
+        }
+    };
+
+    if (loading) {
+        return <div>Loading</div>;
+    }
+
+    const callApi = async () => {
+        const token = await user.getIdToken();
+        console.log(token);
+        const requestInfo = {
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        };
+
+        const res = getReq({
+            route: "http://localhost:8081/",
+            headers: requestInfo,
+        });
+        console.log(res);
+    };
 
   return (
     <header className="sm:pt-0 pt-4 m-3 h-full">

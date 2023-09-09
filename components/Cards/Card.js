@@ -1,58 +1,85 @@
 import React, { useEffect, useState } from "react";
 import { getReq } from "@/lib/utils";
-import { setSavedCards, selectSavedCards } from "@/store/slices/cardSlice";
+import {
+  setSavedCards,
+  selectSavedCards,
+  selectFilterSavedCards,
+  filterSavedCards,
+} from "@/store/slices/cardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CardTxnDisplay from "./CardTxnDisplay";
 import MinimisedTxnCard from "./MinimisedTxnCard";
 import CardTransaction from "./CardTransaction";
+import { CARD_SERVICE } from "@/config/configs";
+import { selectUserId } from "@/store/slices/authSlice";
 
 const Card = () => {
   const dispatch = useDispatch();
   const saved_cards = useSelector(selectSavedCards);
+  const filtered_saved_cards = useSelector(selectFilterSavedCards);
+  const userId = useSelector(selectUserId);
+  const token = useSelector(selectToken);
   const [cardDisplay, setCardDisplay] = useState({});
   const [effect, setEffect] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
+      // TODO card need to send user id
+      // return card id in each obj
       const res = await getReq({
-        route: "http://localhost:3000/api/getcarddetails",
-        headers: {},
+        // route: "http://localhost:8082/cards",
+        // route: CARD_SERVICE + userId,
+        route: "http://localhost:8080/account",
+        headers: {Authorization: "Bearer " + token,},
+        // route: "http://localhost:3000/api/getcarddetails",
+        // headers: {},
       });
-      console.log(res);
+      console.log("checking",res);
       dispatch(setSavedCards(res));
     };
     fetchData();
   }, [dispatch]);
 
+
+  console.log("checking",filtered_saved_cards)
   return (
     <div className="w-full h-full flex flex-wrap">
-      <div className="basis-1/2 h-full ">
-        <div className="mx-auto  w-[725px]">
-          {saved_cards.map((card, index) => (
+      <div className="basis-1/2 h-full">
+        <div className="mx-auto  w-[600px]">
+          {filtered_saved_cards.map((card, index) => (
             <div
-              className={`relative h-24 ${
-                effect === index && "animate-wiggle"
-              } cursor-pointer`}
+              className={`relative h-24 cursor-pointer`}
               key={"card-" + index}
               onClick={() => {
                 setCardDisplay(card);
-                setEffect(index);
+                setEffect(card.cardNumber);
+                setTimeout(() => {
+                  dispatch(filterSavedCards(card));
+                }, 900);
               }}
               onAnimationEnd={() => setEffect(false)}
             >
-              {index === saved_cards.length - 1 && (
+              {index === filtered_saved_cards.length - 1 && (
                 <CardTxnDisplay
                   card={card}
-                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms hover:scale-110 pt-5`}
+                  divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-position duration-1000 hover:scale-110 pt-5 ${
+                    effect === card.cardNumber
+                      ? "left-[1005px] -top-[295px] border-t-0"
+                      : "left-0 top-0"
+                  }`}
                 />
               )}
               {/* pt-5 hover:pt-0 hover:pb-10 */}
               {index !== saved_cards.length - 1 && (
-                <MinimisedTxnCard
+                <MinimisedCard
                   card={card}
                   divclass={`absolute ${
                     index !== 0 && "border-t-8"
-                  } border-gray-500 h-fit w-full transition-spacing duration-500ms pt-5 hover:pt-0 hover:pb-10`}
+                  } border-gray-500 h-fit w-full transition-position duration-1000 pt-5 hover:pt-0 hover:pb-10 ${
+                    effect === card.cardNumber
+                      ? "left-[1005px] -top-[200px] border-t-0"
+                      : "left-0 top-0"
+                  }`}
                 />
               )}
             </div>

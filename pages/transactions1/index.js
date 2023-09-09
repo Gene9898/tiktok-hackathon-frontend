@@ -5,24 +5,28 @@ const DummyData = [
   {
     id: 1,
     title: "Food",
+    bank: "DBS",
     color: "lime",
     amount: 800,
   },
   {
     id: 2,
     title: "Movies",
+    bank: "OCBC",
     color: "lime",
     amount: 100,
   },
   {
     id: 3,
     title: "Google",
+    bank: "DBS",
     color: "red",
     amount: 500,
   },
   {
     id: 4,
     title: "Bus / MRT",
+    bank: "TrustBank",
     color: "lime",
     amount: 8,
   },
@@ -52,6 +56,7 @@ export default function Transactions() {
                 key={"transaction-" + index}
                 color={transaction.color}
                 title={transaction.title}
+                bank={transaction.bank}
                 amount={transaction.amount}
                 id={transaction.id}
               />

@@ -65,7 +65,7 @@
   }
 
   .panel{
-    @apply p-6 rounded-lg bg-rose-600 shadow-lg mx-2;
+    @apply p-6 rounded-lg bg-rose-600 shadow-lg;
   }
 
   .log {
@@ -162,7 +162,7 @@
 
 @media (max-width: 350px) {
   h1 {
-    @apply text-sm;
+    @apply text-xs;
   }
 
   h2 {

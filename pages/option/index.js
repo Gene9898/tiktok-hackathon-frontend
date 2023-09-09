@@ -9,26 +9,33 @@ import CardForm from "@/components/Cards/CardForm";
 import { cardFormValidation, postReq, getReq } from "@/lib/utils";
 import MinimisedRegisterCard from "@/components/Cards/MinimisedRegisterCard";
 import CardRegisterDisplay from "@/components/Cards/CardRegisterDisplay";
-import { useRouter } from 'next/router';
+import { CARD_SERVICE } from "@/config/configs";
+import { selectUserId, selectToken } from "@/store/slices/authSlice";
 
 
 const Option = () => {
     const dispatch = useDispatch();
   const card_detail = useSelector(selectCardRegisterDetails);
   const saved_cards = useSelector(selectSavedCards);
+  const userId = useSelector(selectUserId);
+  const token = useSelector(selectToken);
   const [isReported, setIsReported] = useState(false);
-
   const fetchData = async () => {
     const res = await getReq({
-      route: "http://localhost:3000/api/getcarddetails",
-      headers: {},
+      // TODO
+      route: CARD_SERVICE+userId,
+      headers: {
+        Authorization: "Bearer " + token,
+    },
     });
     console.log(res);
     dispatch(setSavedCards(res));
   };
 
   useEffect(() => {
+    console.log("userId ", userId)
     fetchData();
+    console.log("CHECKING ",saved_cards);
   }, []);
 
   const handleReport = () => {
@@ -40,17 +47,19 @@ const Option = () => {
   };
 
   const submitForm = async () => {
-    const check = cardFormValidation(card_detail);
+    const check = cardFormValidation(card_detail,saved_cards);
     console.log(check);
     if (check) {
       const res = await postReq({
-        route: "http://localhost:3000/api/postcarddetails",
+        //TODO send user id with the obj too
+        route: CARD_SERVICE,
         body: card_detail,
         headers: { "Content-Type": "application/json" },
       });
       console.log(res);
       alert("Card Successfully Saved!");
-      handleClose(); 
+      handleClose(); // Close the popup after submitting
+      document.getElementById("card-form").reset();
       fetchData();
     }
   };
