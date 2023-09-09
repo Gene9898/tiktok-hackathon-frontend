@@ -15,14 +15,14 @@ const CardTxnDisplay = (props) => {
 
   return (
     <div
-      className={`rounded-xl w-[600px] p-2 ${props.divclass} ${getBankColor(
+      className={`rounded-xl sm:w-[75%] w-3/5 p-2 ${props.divclass} ${getBankColor(
         props.card.bank
       )}`}
     >
       <div className="ml-12 h-full">
         {props.card.cardNumber &&
           props.card.cardNumber.replace(/ /g, "").length >= 6 && (
-            <h1 className="ml-auto w-fit h-10">{props.card.bank}</h1>
+            <h2 className="ml-auto w-fit h-10">{props.card.bank}</h2>
           )}
         <FcSimCardChip size={64} className="basis-full mt-6" />
         <div className="flex flex-wrap">
