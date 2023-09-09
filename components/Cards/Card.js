@@ -15,7 +15,7 @@ const Card = () => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await getReq({
-        route: "http://localhost:3001/api/getcarddetails",
+        route: "http://localhost:3000/api/getcarddetails",
         headers: {},
       });
       console.log(res);

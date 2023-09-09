@@ -14,7 +14,7 @@ const CardRegister = () => {
     console.log(check);
     if (check) {
       const res = await postReq({
-        route: "http://localhost:3001/api/postcarddetails",
+        route: "http://localhost:3000/api/postcarddetails",
         body: card_detail,
         headers: { "Content-Type": "application/json" },
       });
