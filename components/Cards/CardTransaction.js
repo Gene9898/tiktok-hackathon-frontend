@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CardDisplay from "./CardDisplay";
+import CardTxnDisplay from "./CardTxnDisplay";
 import { useDispatch, useSelector } from "react-redux";
 import { getReq, postReq } from "@/lib/utils";
 import {
@@ -78,7 +78,7 @@ const CardTransaction = (props) => {
     <div className="w-[50%] h-full">
       {Object.keys(props.card).length > 0 && (
         <>
-          <CardDisplay
+          <CardTxnDisplay
             form={false}
             card={props.card}
             divclass={`w-[60%] h-fit mx-auto ${

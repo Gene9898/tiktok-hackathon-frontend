@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import CardDisplay from "@/components/Cards/CardDisplay";
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectCardRegisterDetails,
@@ -8,7 +7,8 @@ import {
 } from "@/store/slices/cardSlice";
 import CardForm from "@/components/Cards/CardForm";
 import { cardFormValidation, postReq, getReq } from "@/lib/utils";
-import MinimisedCard from "@/components/Cards/MinimisedCard";
+import MinimisedRegisterCard from "@/components/Cards/MinimisedRegisterCard";
+import CardRegisterDisplay from "@/components/Cards/CardRegisterDisplay";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -63,13 +63,13 @@ const Cards = () => {
             onClick={() => {}}
           >
             {index === saved_cards.length - 1 && (
-              <CardDisplay
+              <CardRegisterDisplay
                 card={card}
                 divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms`}
               />
             )}
             {index !== saved_cards.length - 1 && (
-              <MinimisedCard
+              <MinimisedRegisterCard
                 card={card}
                 divclass={`absolute ${
                   index !== 0 && "border-t-8"
