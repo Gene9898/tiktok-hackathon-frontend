@@ -137,3 +137,25 @@ export default Cards;
               </button>
             </section>
           )}*/
+
+          /*<section className="flex flex-col mt-10 w-[725px] mx-auto">
+              <TransactionForm setSelection={setSelection} />
+              <button
+                className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
+                onClick={() => {
+                  let check = paymentFormValidation(payment_details);
+                  if (check) {
+                    dispatch(
+                      setAdditionalPaymentDetails({
+                        // cardId: props.card.cardId,
+                        cardId: props.card.cardNumber,
+                        dateOfBirth: props.card.dateOfBirth,
+                      })
+                    );
+                    document.getElementById("txn-form").reset();
+                  }
+                }}
+              >
+                Make Payment
+              </button>
+            </section>*/
