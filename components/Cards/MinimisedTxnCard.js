@@ -17,7 +17,7 @@ const MinimisedTxnCard = (props) => {
   console.log(getBankColor(props.card.bank));
   return (
     <div
-      className={` rounded-xl w-[60%] p-2 ${props.divclass} ${getBankColor(
+      className={` rounded-xl w-[600px] p-2 ${props.divclass} ${getBankColor(
         props.card.bank
       )}`}
     >
@@ -25,7 +25,7 @@ const MinimisedTxnCard = (props) => {
         {censorDots.map((index) => (
           <BsDot key={"dot" + index} size={54} className="" />
         ))}
-        <h1 className="w-fit h-14 rounded-md p-2 text-4xl ">
+        <h1 className="w-fit h-6 rounded-md p-2 text-4xl ">
           {formatMinimisedCardNumber(props.card.cardNumber)}
         </h1>
         {props.card.cardNumber &&
@@ -34,20 +34,22 @@ const MinimisedTxnCard = (props) => {
           )}
         <div className="invisible">
           <FcSimCardChip size={64} className="basis-full mt-20" />
-          <h1 className="w-full h-14 rounded-md p-2 text-5xl ">
+          <h1 className="w-full h-6 rounded-md p-2 text-5xl ">
             {formatCardNumber(props.card.cardNumber)}
           </h1>
 
-          <section className="mt-10">
-            <h1 className="float-left mr-4 h-14 rounded-md w-1/2 p-2 ">
+          <section className="mt-5">
+            <h1 className="float-left mr-4 h-6 rounded-md w-1/2 p-2 ">
               {props.card.name}
             </h1>
             {props.card.expirationDate && (
-              <h6 className="float-left h-14 w-10 p-2 mr-6 text-[18px]">
+              <h6 className="float-left h-6 w-10 p-2 mr-6 text-[18px]">
                 Valid Thru
               </h6>
             )}
-            <h1 className="h-14 p-2 ">{props.card.expirationDate}</h1>
+            <h1 className="h-6 p-2 ">
+              {props.card.expiryYear}-{props.card.expiryMonth}
+            </h1>
           </section>
 
           {props.card.cardNumber &&
