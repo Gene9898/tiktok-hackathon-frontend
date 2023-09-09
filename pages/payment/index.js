@@ -1,165 +1,103 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { getReq } from "@/lib/utils";
 import {
-  selectCardRegisterDetails,
-  selectSavedCards,
   setSavedCards,
+  selectSavedCards,
+  selectFilterSavedCards,
+  filterSavedCards,
 } from "@/store/slices/cardSlice";
-import CardForm from "@/components/Cards/CardForm";
-import { cardFormValidation, postReq, getReq } from "@/lib/utils";
-import MinimisedRegisterCard from "@/components/Cards/MinimisedRegisterCard";
-import CardRegisterDisplay from "@/components/Cards/CardRegisterDisplay";
-import { CARD_SERVICE, TX_SERVICE } from "@/config/configs";
+import { useDispatch, useSelector } from "react-redux";
+import CardTxnDisplay from "components/Cards/CardTxnDisplay.js";
+import MinimisedTxnCard from "components/Cards/MinimisedTxnCard";
+// import { CARD_SERVICE } from "@/config/configs";
 import { selectUserId } from "@/store/slices/authSlice";
 
-const Cards = () => {
+const Card = () => {
   const dispatch = useDispatch();
-  const card_detail = useSelector(selectCardRegisterDetails);
   const saved_cards = useSelector(selectSavedCards);
-  const [isReported, setIsReported] = useState(false);
+  const filtered_saved_cards = useSelector(selectFilterSavedCards);
   const userId = useSelector(selectUserId);
-
-  const fetchData = async () => {
-    const res = await getReq({
-      route: CARD_SERVICE+ userId,
-      headers: {},
-    });
-    console.log(res);
-    dispatch(setSavedCards(res));
-  };
+  // const token = useSelector(selectToken);
+  const [cardDisplay, setCardDisplay] = useState({});
+  const [effect, setEffect] = useState("");
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    console.log(effect);
+  }, [effect]);
 
-  const handleReport = () => {
-    setIsReported(true);
-  };
-
-  const handleClose = () => {
-    setIsReported(false);
-  };
-
-  const submitForm = async () => {
-    const check = cardFormValidation(card_detail);
-    console.log(check);
-    if (check) {
-      const res = await postReq({
-        // route: "http://localhost:3000/api/postcarddetails",
-        route: CARD_SERVICE,
-        body: card_detail,
-        headers: { "Content-Type": "application/json" },
+  useEffect(() => {
+    const fetchData = async () => {
+      // TODO card need to send user id
+      // return card id in each obj
+      const res = await getReq({
+        // route: "http://localhost:8082/cards",
+        // route: CARD_SERVICE + userId,
+        // route: "http://localhost:8080/account",
+        // headers: {Authorization: "Bearer " + token,},
+        route: "http://localhost:3000/api/getcarddetails",
+        headers: {},
       });
-      console.log(res);
-      alert("Card Successfully Saved!");
-      handleClose(); // Close the popup after submitting
-      fetchData();
-    }
-  };
+      console.log("checking", res);
+      dispatch(setSavedCards(res));
+    };
+    fetchData();
+  }, [dispatch]);
 
+  console.log("checking", filtered_saved_cards);
   return (
-    <div className="flex flex-wrap">
-      <div className="basis-1/2">
-        {saved_cards.map((card, index) => (
+  <div className="w-full h-full flex flex-wrap">
+    <div className="basis-1/2 h-full lg:basis-1/2 md:basis-full sm:basis-full">
+      <div className="w-[50%] md:mx-0 sm:mx-0">
+        <h2 className="relative w-[750px]">Card Manager</h2>
+      </div>
+    </div>
+
+    <div className="basis-1/2 mt-6 h-full lg:basis-1/2 md:basis-full sm:basis-full">
+      <h2 className="w-[50%] md:mx-0 sm:mx-0"></h2>
+    </div>
+
+    <div className="basis-1/2 h-full lg:basis-1/2 md:basis-full sm:basis-full">
+      <div className="w-[50%] md:mx-0 sm:mx-0" id="txn-card-wallet">
+        {filtered_saved_cards.map((card, index) => (
           <div
-            className={`relative h-24 mx-auto w-[725px]`}
+            className={`relative h-24 cursor-pointer w-[750px] mx-auto ${
+              effect === card.cardNumber && "animate-wiggle"
+            } ${index === filtered_saved_cards.length - 1 && "h-80"}`}
             key={"card-" + index}
-            onClick={() => {}}
+            onClick={() => {
+              setCardDisplay(card);
+              setEffect(card.cardNumber);
+              setTimeout(() => {
+                dispatch(filterSavedCards(card));
+              }, 300);
+            }}
+            onAnimationEnd={() => setEffect(false)}
           >
-            {index === saved_cards.length - 1 && (
-              <CardRegisterDisplay
+            {index === filtered_saved_cards.length - 1 && (
+              <CardTxnDisplay
                 card={card}
-                divclass={`absolute border-t-8 border-gray-500 rounded-xl w-full transition-spacing duration-500ms`}
+                divclass={`absolute border-t-8 border-gray-500 transition-spacing duration-500 hover:scale-110 pt-5 w-[75%]`}
               />
             )}
-            {index !== saved_cards.length - 1 && (
-              <MinimisedRegisterCard
+            {index !== filtered_saved_cards.length - 1 && (
+              <MinimisedTxnCard
                 card={card}
                 divclass={`absolute ${
                   index !== 0 && "border-t-8"
-                } border-gray-500 h-fit w-full transition-spacing duration-500ms`}
+                } border-gray-500 h-fit transition-spacing duration-500 pt-5 hover:pt-0 hover:pb-10 w-[75%]`}
               />
             )}
           </div>
         ))}
       </div>
-      <div className="text-center mt-4 basis-1/2">
-        <button
-          className="bg-blue-400 text-white p-2 rounded-md"
-          onClick={handleReport}
-        >
-          Add Card
-        </button>
-
-        
-      </div>
     </div>
+  </div>
   );
 };
 
-export default Cards;
+export default Card;
 
 
 
-  /*{selection === "none" && (
-            <section className="mt-10 flex flex-wrap w-[60%] mx-auto gap-8 justify-center">
-              <button
-                className="bg-rose-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
-                onClick={() => {
-                  setSelection("payment");
-                }}
-              >
-                Make Payment
-              </button>
-              <button
-                className="bg-zinc-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
-                onClick={() => {
-                  setSelection("txn");
-                }}
-              >
-                Transaction History
-              </button>
-            </section>
-          )}
-          {selection === "txn" && (
-            
-          )}
-          {selection === "payment" && (
-            <section className="flex flex-col mt-10 w-[725px] mx-auto">
-              <TransactionForm setSelection={setSelection} />
-              <button
-                className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
-                onClick={() => {
-                  dispatch(
-                    setAdditionalPaymentDetails({
-                      cardNumber: props.card.cardNumber,
-                    })
-                  );
-                }}
-              >
-                Make Payment
-              </button>
-            </section>
-          )}*/
 
-          /*<section className="flex flex-col mt-10 w-[725px] mx-auto">
-              <TransactionForm setSelection={setSelection} />
-              <button
-                className="w-full mx-auto btn bg-rose-500 text-2xl mt-10"
-                onClick={() => {
-                  let check = paymentFormValidation(payment_details);
-                  if (check) {
-                    dispatch(
-                      setAdditionalPaymentDetails({
-                        // cardId: props.card.cardId,
-                        cardId: props.card.cardNumber,
-                        dateOfBirth: props.card.dateOfBirth,
-                      })
-                    );
-                    document.getElementById("txn-form").reset();
-                  }
-                }}
-              >
-                Make Payment
-              </button>
-            </section>*/
+
