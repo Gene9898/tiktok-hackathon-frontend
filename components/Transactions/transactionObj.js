@@ -30,6 +30,7 @@ function TransactionObj({ color, title, amount, id }) {
         <ReportPopup
           transactionId={id}
           title={title}
+          bank={props.bank}
           amount={amount}
           onClose={() => setIsPopupOpen(false)}
         />

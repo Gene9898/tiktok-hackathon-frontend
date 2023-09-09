@@ -10,11 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 import CardDisplay from "./CardDisplay";
 import MinimisedCard from "./MinimisedCard";
 import CardTransaction from "./CardTransaction";
+import { CARD_SERVICE } from "@/config/configs";
+import { selectUserId } from "@/store/slices/authSlice";
 
 const Card = () => {
   const dispatch = useDispatch();
   const saved_cards = useSelector(selectSavedCards);
   const filtered_saved_cards = useSelector(selectFilterSavedCards);
+  const userId = useSelector(selectUserId);
+  const token = useSelector(selectToken);
   const [cardDisplay, setCardDisplay] = useState({});
   const [effect, setEffect] = useState("");
 
@@ -24,8 +28,8 @@ const Card = () => {
       // return card id in each obj
       const res = await getReq({
         // route: "http://localhost:8082/cards",
-        route: "http://localhost:3001/api/getcarddetails",
-        headers: {},
+        route: CARD_SERVICE + userId,
+        headers: {Authorization: "Bearer " + token,},
       });
       console.log(res);
       dispatch(setSavedCards(res));

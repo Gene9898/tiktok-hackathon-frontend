@@ -9,6 +9,7 @@ import {
 import CardForm from "@/components/Cards/CardForm";
 import { cardFormValidation, postReq, getReq } from "@/lib/utils";
 import MinimisedCard from "@/components/Cards/MinimisedCard";
+import { CARD_SERVICE } from "@/config/configs";
 
 const Cards = () => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Cards = () => {
     if (check) {
       const res = await postReq({
         //TODO send user id with the obj too
-        route: "http://localhost:3001/api/postcarddetails",
+        route: CARD_SERVICE,
         body: card_detail,
         headers: { "Content-Type": "application/json" },
       });

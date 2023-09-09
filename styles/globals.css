@@ -7,7 +7,7 @@
     @apply h-full;
   }
   body {
-    @apply bg-black text-white min-h-full;
+    @apply bg-black text-white min-h-full m-2;
     /*@apply bg-white;
     @apply dark:bg-neutral-700;*/
   }
@@ -67,7 +67,7 @@
   }
 
   .panel{
-    @apply p-6 rounded-lg bg-rose-600 shadow-lg mx-2;
+    @apply p-6 rounded-lg bg-rose-600 shadow-lg;
   }
 
   .log {
@@ -122,7 +122,7 @@
   }
 
   :link{
-    @apply px-2 py-1 text-white capitalize hover:bg-blue-600 hover:border-yellow-700 hover:scale-110 rounded-xl;
+    @apply px-2 py-1 text-white capitalize rounded-xl;
   }
 
   .report {
@@ -154,7 +154,7 @@
 
 @media (max-width: 350px) {
   h1 {
-    @apply text-sm;
+    @apply text-xs;
   }
 
   h2 {
@@ -175,5 +175,10 @@
 
   .report {
     @apply text-white capitalize hover:text-red-600 text-xs;
+  }
+
+
+  :link{
+    @apply px-1 py-1 mx-1 text-white capitalize rounded-xl;
   }
 }

@@ -16,6 +16,7 @@ import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
 import CardForm from "./CardForm";
 import TransactionForm from "../Transactions/TransactionForm";
+import { TX_SERVICE } from "@/config/configs";
 
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
@@ -28,8 +29,8 @@ const CardTransaction = (props) => {
     const fetchData = async () => {
       // TODO needa to get card id from redux stored cards
       const res = await getReq({
-        route: `http://localhost:3001/api/${props.card.cardId}`,
-        headers: {},
+        route: CARD_SERVICE + props.card.cardId,
+        headers:  {Authorization: "Bearer " + token}
       });
       console.log(res);
       dispatch(setCardTransactions(res));
@@ -42,7 +43,7 @@ const CardTransaction = (props) => {
     const postData = async () => {
       const res = await postReq({
         //TODO post with the card in the tx obj
-        route: "http://localhost:3001/api/posttxn",
+        route: TX_SERVICE,
         // route:"http://localhost:8082/transactions",
         body: payment_details,
         headers: { "Content-Type": "application/json" },
