@@ -75,7 +75,6 @@ const CardTransaction = (props) => {
                   transaction_details[index - 1]["transactionDateTime"] !==
                     transaction_details[index]["transactionDateTime"]) && (
                   <h4>{txn["transactionDateTime"]}</h4>
-                  <h4>{txn["transactionDateTime"]}</h4>
                 )}
                 <Transaction
                   key={"transaction-" + index}
