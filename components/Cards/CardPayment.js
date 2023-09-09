@@ -16,7 +16,7 @@ import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
 import CardForm from "./CardForm";
 import TransactionForm from "../Transactions/TransactionForm";
-// import { TX_SERVICE } from "@/config/configs";
+import { TX_SERVICE, CARD_SERVICE } from "@/config/configs";
 
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
@@ -25,20 +25,7 @@ const CardTransaction = (props) => {
   const payment_details = useSelector(selectPaymentDetails);
   const transaction_details = useSelector(selectTransactionDetails);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      // TODO needa to get card id from redux stored cards
-      const res = await getReq({
-        route: CARD_SERVICE + '/' + props.card.cardId,
-        headers: {},
-      });
-      console.log(res);
-      dispatch(setCardTransactions(res));
-    };
-    fetchData();
-    dispatch(setTransactionDetails());
-  }, [dispatch, props.card.cardId]);
-
+  console.log(props.card);
   useEffect(() => {
     const postData = async () => {
       const res = await postReq({
@@ -68,51 +55,26 @@ const CardTransaction = (props) => {
             }`}
           />
           <section className="flex flex-col mt-10 sm:w-[75%] w-3/5 bg-slate-700 rounded-xl p-4">
-              <TransactionForm setSelection={setSelection} />
-              <button
-                className="w-[82%] mx-auto btn bg-rose-500 text-2xl mt-10"
-                onClick={() => {
-                  let check = paymentFormValidation(payment_details);
-                  if (check) {
-                    dispatch(
-                      setAdditionalPaymentDetails({
-                        // cardId: props.card.cardId,
-                        cardId: props.card.cardNumber,
-                        dateOfBirth: props.card.dateOfBirth,
-                      })
-                    );
-                    document.getElementById("txn-form").reset();
-                  }
-                }}
-              >
-                Make Payment
-              </button>
-            </section>
-          {/* {selection === "none" && (
-            <section className="mt-10 flex flex-wrap w-[60%] mx-auto gap-8 justify-center">
-              <button
-                className="bg-rose-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
-                onClick={() => {
-                  setSelection("payment");
-                }}
-              >
-                Make Payment
-              </button>
-              <button
-                className="bg-zinc-500 rounded-2xl p-4 text-2xl w-[35%] hover:scale-110"
-                onClick={() => {
-                  setSelection("txn");
-                }}
-              >
-                Transaction History
-              </button>
-            </section>
-          )} */}
-          {/* {selection === "txn" && ( */}
-          {/* )} */}
-          {/* {selection === "payment" && (
-            
-          )} */}
+            <TransactionForm setSelection={setSelection} />
+            <button
+              className="w-[82%] mx-auto btn bg-rose-500 text-2xl mt-10"
+              onClick={() => {
+                let check = paymentFormValidation(payment_details);
+                if (check) {
+                  dispatch(
+                    setAdditionalPaymentDetails({
+                      cardId: props.card.cardId,
+                      // cardId: props.card.cardNumber,
+                      dateOfBirth: props.card.dateOfBirth,
+                    })
+                  );
+                  document.getElementById("txn-form").reset();
+                }
+              }}
+            >
+              Make Payment
+            </button>
+          </section>
         </div>
       )}
     </div>

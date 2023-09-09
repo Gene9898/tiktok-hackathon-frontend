@@ -12,7 +12,7 @@ import { BsDot } from "react-icons/bs";
 const CardTxnDisplay = (props) => {
   const dispatch = useDispatch();
   const censorDots = [1, 2, 3, 4];
-
+  console.log(getBankColor(props.card.bank));
   return (
     <div
       className={`rounded-xl w-[600px] p-2 ${props.divclass} ${getBankColor(

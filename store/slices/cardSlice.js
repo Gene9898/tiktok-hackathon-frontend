@@ -173,18 +173,20 @@ export const cardSlice = createSlice({
         return formattedDate;
       }
       const transactions = action.payload;
-      transactions.sort(
-        (t1, t2) =>
-          new Date(t2["transactionDateTime"]) -
-          new Date(t1["transactionDateTime"])
-      );
-      transactions.forEach((txn) => {
-        txn["transactionDateTime"] = formatDate(
-          new Date(txn["transactionDateTime"])
+      if (transactions && transactions.length > 0) {
+        transactions.sort(
+          (t1, t2) =>
+            new Date(t2["transactionDateTime"]) -
+            new Date(t1["transactionDateTime"])
         );
-      });
-      console.log(transactions);
-      state.transaction_details = transactions;
+        transactions.forEach((txn) => {
+          txn["transactionDateTime"] = formatDate(
+            new Date(txn["transactionDateTime"])
+          );
+        });
+        console.log(transactions);
+        state.transaction_details = transactions;
+      }
     },
     filterSavedCards(state, action) {
       const cardDisplay = action.payload;

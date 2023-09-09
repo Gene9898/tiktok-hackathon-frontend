@@ -12,6 +12,7 @@ import MinimisedTxnCard from "components/Cards/MinimisedTxnCard";
 import CardPayment from "components/Cards/CardPayment";
 // import { CARD_SERVICE } from "@/config/configs";
 import { selectUserId } from "@/store/slices/authSlice";
+import { CARD_SERVICE } from "@/config/configs";
 
 const Card = () => {
   const dispatch = useDispatch();
@@ -33,10 +34,8 @@ const Card = () => {
       // TODO card need to send user id
       // return card id in each obj
       const res = await getReq({
-        // route: "http://localhost:8082/cards",
-        // route: CARD_SERVICE + userId,
-        // route: "http://localhost:8080/account",
-        // headers: {Authorization: "Bearer " + token,},
+        route: CARD_SERVICE + "/" + userId,
+        headers: {},
       });
       console.log("checking", res);
       dispatch(setSavedCards(res));

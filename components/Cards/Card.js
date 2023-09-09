@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CardTxnDisplay from "./CardTxnDisplay";
 import MinimisedTxnCard from "./MinimisedTxnCard";
 import CardTransaction from "./CardTransaction";
-// import { CARD_SERVICE } from "@/config/configs";
+import { CARD_SERVICE } from "@/config/configs";
 import { selectUserId, selectToken } from "@/store/slices/authSlice";
 
 const Card = () => {
@@ -22,16 +22,10 @@ const Card = () => {
   const [effect, setEffect] = useState("");
 
   useEffect(() => {
-    console.log(effect);
-  }, [effect]);
-
-  useEffect(() => {
-    console.log(effect);
-  }, [effect]);
-
-  useEffect(() => {
     console.log(userId);
   }, [userId]);
+
+
   useEffect(() => {
     const fetchData = async () => {
       // TODO card need to send user id
