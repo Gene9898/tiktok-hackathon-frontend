@@ -7,7 +7,7 @@
     @apply h-full;
   }
   body {
-    @apply bg-black text-white min-h-full;
+    @apply bg-black text-white m-1;
     /*@apply bg-white;
     @apply dark:bg-neutral-700;*/
   }
@@ -73,6 +73,10 @@
   .log {
     @apply mt-4 inline-block bg-rose-600 hover:bg-rose-500 text-white py-2 px-6 rounded-lg text-base sm:text-lg font-semibold transition duration-300 ease-in-out mb-8;
   }
+
+  .image{
+    @apply object-scale-down h-10 mr-4;
+  }
 }
 
 /* Mobile Responsive Classes */
@@ -122,11 +126,15 @@
   }
 
   :link{
-    @apply px-2 py-1 text-white capitalize hover:bg-blue-600 hover:border-yellow-700 hover:scale-110 rounded-xl;
+    @apply px-2 py-1 text-white capitalize hover:bg-rose-500 hover:border-rose-500 hover:scale-100 rounded-xl;
   }
 
   .report {
     @apply text-white capitalize hover:text-red-600 text-sm;
+  }
+
+  .image{
+    @apply object-scale-down h-6 mr-2;
   }
 }
 
@@ -148,7 +156,7 @@
   }
   
   .flexbox{
-    @apply container max-w-4xl px-0 py-4 mx-auto pb-2 text-xs mx-2 pr-2;
+    @apply container max-w-4xl px-0 py-4 mx-auto pb-2 text-xs;
   }
 }
 
@@ -175,5 +183,9 @@
 
   .report {
     @apply text-white capitalize hover:text-red-600 text-xs;
+  }
+
+  .image{
+    @apply object-scale-down h-3 mr-1;
   }
 }
