@@ -16,7 +16,7 @@ import Transaction from "../Transactions/Transaction";
 import { MdArrowBack } from "react-icons/md";
 import CardForm from "./CardForm";
 import TransactionForm from "../Transactions/TransactionForm";
-// import { TX_SERVICE } from "@/config/configs";
+import { TX_SERVICE } from "@/config/configs";
 
 const CardTransaction = (props) => {
   const dispatch = useDispatch();
