@@ -6,7 +6,7 @@ export default function Navbar() {
       <div className="flex items-center justify-between">
         <div className="flex items-center">
         <img className="image" src="./logo.png"/>
-        <h2>FinanceApp</h2>
+        <h2>FraudNow</h2>
         </div>
         <div className="flex items-center sm:gap-2">
           <Link href="/">Home</Link>

@@ -7,7 +7,7 @@
     @apply h-full;
   }
   body {
-    @apply bg-black text-white m-1;
+    @apply bg-black text-white min-h-full m-1 bg-gradient-to-t from-rose-500 to-black;
     /*@apply bg-white;
     @apply dark:bg-neutral-700;*/
   }
@@ -63,7 +63,7 @@
   }
 
   .flexbox {
-    @apply container max-w-4xl px-4 py-4 mx-auto pb-8 text-lg;
+    @apply container max-w-screen-2xl px-4 py-4 mx-auto pb-8 text-lg;
   }
 
   .panel{
@@ -71,7 +71,7 @@
   }
 
   .log {
-    @apply mt-4 inline-block bg-rose-600 hover:bg-rose-500 text-white py-2 px-6 rounded-lg text-base sm:text-lg font-semibold transition duration-300 ease-in-out mb-8;
+    @apply block text-black px-4 py-2 font-semibold rounded-full bg-white hover:bg-gray-300 text-base sm:text-lg text-sm font-semibold transition duration-300 ease-in-out;
   }
 
   .image{
