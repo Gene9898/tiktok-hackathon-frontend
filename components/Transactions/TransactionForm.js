@@ -15,18 +15,18 @@ const TransactionForm = (props) => {
 
   return (
     <form
-      className="flex flex-wrap w-full bg-slate-400 rounded-xl p-4 justify-center font-mono mx-auto"
+      className="flex flex-wrap w-full bg-slate-700 rounded-xl p-4 justify-center font-mono mx-auto"
       id="txn-form"
     >
       <div className="flex flex-wrap w-full">
-        <MdArrowBack
+        {/*<MdArrowBack
           size={48}
           className="hover:scale-125 cursor-pointer"
           onClick={() => {
             props.setSelection("none");
           }}
-        />
-        <h1 className="ml-auto">Payment</h1>
+        />*/}
+        <h1>Payment</h1>
       </div>
       <div className="flex flex-wrap w-[90%] mt-5 ">
         <CardInput

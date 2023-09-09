@@ -9,6 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import CardTxnDisplay from "components/Cards/CardTxnDisplay.js";
 import MinimisedTxnCard from "components/Cards/MinimisedTxnCard";
+import CardPayment from "components/Cards/CardPayment";
 // import { CARD_SERVICE } from "@/config/configs";
 import { selectUserId } from "@/store/slices/authSlice";
 
@@ -90,6 +91,7 @@ const Card = () => {
           </div>
         ))}
       </div>
+      <CardPayment card={cardDisplay} effect={effect} />
     </div>
   </div>
   );
